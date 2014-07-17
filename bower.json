@@ -1,0 +1,9 @@
+{
+  "name": "modularus",
+  "version": "0.0.1",
+  "devDependencies": {},
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.1.1"
+  }
+}
