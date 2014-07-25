@@ -3,16 +3,16 @@ module.exports = {
 	build_dir: "public",
 	bower_dir: "bower_components",
 	engines: {
-		// Script
+		// Script: pick 1 only
 		"js": true,
 		"coffee": false,
 
-		// Template
+		// Template: pick 1 only
 		"html": true,
-		"jade": true,
+		"jade": false,
 		"ejs": false,
 
-		// Style
+		// Style: pick 1 only
 		"css": false,
 		"less": true,
 		"scss": false,

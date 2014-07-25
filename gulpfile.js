@@ -15,6 +15,7 @@ var gulp = require('gulp'),
 	gutil = require('gulp-util'),
 	connect = require('gulp-connect'),
 	concat = require('gulp-concat'),
+	rename = require("gulp-rename"),
 	uglify = require('gulp-uglify');
 
 
@@ -23,74 +24,114 @@ var gulp = require('gulp'),
 ************************************************************/
 
 	// // Handles application and vendor scripts
-	// gulp.task('scripts', ['scripts_app', 'scripts_vendor']);
+	gulp.task('scripts', ['scripts_app', 'scripts_vendor']);
 
 	// // Copies app scripts to build dir
-	// gulp.task('scripts', function() {
+	gulp.task('scripts_app', function() {
 
-	// 	gulp.src(paths.scripts.app.js)
-	// 		.pipe(concat('app.js'))
-	// 		.pipe(gulp.dest(config.build_dir + '/js'))
-	// 		.pipe(connect.reload());
 
-	// });
+		if(config.engines.coffee) {
+			// ToDo: Coffee
+		}
+		// Processing pure javascript files
+		else {
+			gulp.src(paths.scripts.js)
+				.pipe(concat('app.js'))
+				.pipe(gulp.dest(config.build_dir + '/js'))
+				.pipe(connect.reload());	
+		}
+		
+
+	});
 
 	// // Copies and concatenates vendor scripts to build dir
-	// gulp.task('scripts_vendor', function() {
-	// 	gulp.src(paths.scripts_vendor)
-	// 		.pipe(concat('vendor.js'))
-	// 		.pipe(gulp.dest(config.build_dir + '/js'));
-	// });
+	gulp.task('scripts_vendor', function() {
+		gulp.src(paths.vendor.scripts)
+			.pipe(concat('vendor.js'))
+			.pipe(gulp.dest(config.build_dir + '/js'));
+	});
+
 
 /************************************************************
 *						Styles
 ************************************************************/
 	
-	// gulp.task('styles', ['styles_app', 'styles_vendor']);
+	gulp.task('styles', ['styles_app', 'styles_vendor']);
 
-	// gulp.task('styles_app', function() {
+	gulp.task('styles_app', function() {
 
-	// 	var lessOptions = {
-	// 		paths: [ 
-	// 			config.src_dir + "/app",
-	// 			config.bower_dir,
-	// 		]
-	// 	};
+		if(config.engines.less) {
 
-	// 	gulp.src(paths.styles_main)
-	// 		.pipe(less(lessOptions).on('error', gutil.log))
-	// 		.pipe(gulp.dest(config.build_dir + '/css'))
-	// 		.pipe(connect.reload());
-	// });
+			var less = require("gulp-less");
 
-	// gulp.task('styles_vendor', function() {
-	// 	gulp.src(paths.styles_vendor)
-	// 		.pipe(concat('vendor.css'))
-	// 		.pipe(gulp.dest(config.build_dir + '/css'));
-	// });
+			var lessOptions = {
+				paths: [ 
+					config.src_dir + "/app",
+					config.bower_dir,
+				]
+			};
+
+			gulp.src(paths.styles.less.main)
+				.pipe(less(lessOptions).on('error', gutil.log))
+				.pipe(gulp.dest(config.build_dir + '/css'))
+				.pipe(connect.reload());
+		}
+		else if(config.engines.scss) {
+			// Todo: SCSS
+		}
+		else if(config.engines.stylus) {
+			// Todo: STYLUS
+		}
+		else {
+			// Todo: Pure CSS
+		}
+
+		
+	});
+
+	gulp.task('styles_vendor', function() {
+		gulp.src(paths.vendor.styles)
+			.pipe(concat('vendor.css'))
+			.pipe(gulp.dest(config.build_dir + '/css'));
+	});
 
 /************************************************************
 *						Assets
 ************************************************************/
 
-	// gulp.task('assets', function() {
+	gulp.task('assets', function() {
 
-	// 	gulp.src(paths.assets)
-	// 		.pipe(gulp.dest(config.build_dir + '/assets'));
+		gulp.src(paths.assets)
+			.pipe(gulp.dest(config.build_dir + '/assets'));
 
-	// });
+	});
 
 
 /************************************************************
 *						Templates
 ************************************************************/
 
-	// gulp.task('templates', function() {
+	gulp.task('templates', function() {
+
+		if(config.engines.jade) {
+			// ToDo: Jade
+		}
+		else if(config.engines.ejs) {
+			// ToDo: EJS
+		}
+		else {
+			// HTML
+
+			gulp.src(paths.templates.html.src)
+		  		.pipe(gulp.dest(config.build_dir + '/templates'));
+
+		  	gulp.src(paths.templates.html.main)
+		  		.pipe(rename("index.html"))
+		  		.pipe(gulp.dest(config.build_dir))
+		  		.pipe(connect.reload());
+		}
 	  
-	//   	gulp.src(paths.templates.html)
-	//   		.pipe(gulp.dest(config.build_dir + '/templates'))
-	// 		.pipe(connect.reload());
-	// });
+	});
 
 
 
@@ -111,50 +152,54 @@ var gulp = require('gulp'),
 ************************************************************/
 
 	// // Local server pointing on public folder
-	// gulp.task('connect', function() {
-	// 	connect.server({
-	// 		root: config.build_dir,
-	// 		port: 3333,
-	// 		livereload: true
-	// 	});
-	// });
+	gulp.task('connect', function() {
+		connect.server({
+			root: config.build_dir,
+			port: 3333,
+			livereload: true
+		});
+	});
 
 
-	// // Rerun the task when a file changes
-	// gulp.task('watch', function() {
-	// 	// When application script file changes, handle app scripts
-	// 	gulp.watch(paths.scripts_app, ['jsHint', 'scripts_app']);
+	// Rerun the task when a file changes
+	gulp.task('watch', function() {
 
-	// 	// When template changes, process templates 
-	// 	gulp.watch(paths.templates, ['templates']);
+		// When application script file changes, handle app scripts
+		gulp.watch(paths.scripts.js, ['scripts_app']);
+		gulp.watch(paths.scripts.coffee, ['scripts_app']);
 
-	// 	// When styles changes compile them
-	// 	gulp.watch(paths.styles_app, ['styles_app']);
 
-	// 	// When index.html changes process it again
-	// 	gulp.watch(paths.index, ['index']);
-	// });
+		// When template changes, process templates 
+		gulp.watch(paths.templates.html.src, ['templates']);
+		gulp.watch(paths.templates.jade.src, ['templates']);
+		gulp.watch(paths.templates.ejs.src, ['templates']);
+
+		// When styles changes compile them
+		gulp.watch(paths.styles.css.src, ['styles_app']);
+		gulp.watch(paths.styles.less.src, ['styles_app']);
+
+	});
 
 
 /************************************************************
 *					Global tasks
 *************************************************************/
 	
-	// // Builds the application
-	// // Run "gulp build --production" for production build 
-	// // with minified styles and scripts
-	// gulp.task('build', [
-	// 	'jsHint', 
-	// 	'scripts', 
-	// 	'styles', 
-	// 	'templates'
-	// ]);
+	// Builds the application
+	// Run "gulp build --production" for production build 
+	// with minified styles and scripts
+	gulp.task('build', [
+		// 'jsHint', 
+		'scripts', 
+		'styles', 
+		'templates'
+	]);
 
 	// // Run this task for development
-	// gulp.task('develop', [
-	// 	'build',
-	// 	'watch', 
-	// 	'connect'
-	// ]);
+	gulp.task('develop', [
+		'build',
+		'watch', 
+		'connect'
+	]);
 
-	// gulp.task('default', ['develop']);
+	gulp.task('default', ['develop']);

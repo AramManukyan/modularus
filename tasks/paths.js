@@ -23,9 +23,11 @@ exports.assets = [
 // Scripts
 exports.scripts = {
 	js: [
-		config.src_dir + "/**/*.js"
+		config.src_dir + "/**/!(main)*.js",
+		config.src_dir + "/main/main.js"
 	],
 	coffee: [
+		config.src_dir + "/**/!(main)*.coffee",
 		config.src_dir + "/**/*.coffee"
 	]
 };
