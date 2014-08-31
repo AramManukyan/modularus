@@ -24,7 +24,7 @@ exports.assets = [
 exports.scripts = {
 	js: [
 		config.src_dir + "/**/!(main)*.js",
-		config.src_dir + "/main/main.js"
+		config.src_dir + "/_main/main.js"
 	],
 	coffee: [
 		config.src_dir + "/**/!(main)*.coffee",
@@ -36,22 +36,22 @@ exports.scripts = {
 exports.styles = {
 	css: {
 		src: config.src_dir + "/**/*.css",
-		main: config.src_dir + "/main/main.css"
+		main: config.src_dir + "/_main/main.css"
 	},
 
 	less: {
 		src: config.src_dir + "/**/*.less",
-		main: config.src_dir + "/main/main.less"
+		main: config.src_dir + "/_main/main.less"
 	},
 
 	scss: {
 		src: config.src_dir + "/**/*.scss",
-		main: config.src_dir + "/main/main.scss"
+		main: config.src_dir + "/_main/main.scss"
 	},
 
 	stylus: {
 		src: config.src_dir + "/**/*.styl",
-		main: config.src_dir + "/main/main.styl"
+		main: config.src_dir + "/_main/main.styl"
 	}
 };
 
@@ -59,17 +59,17 @@ exports.styles = {
 exports.templates = {
 	html: {
 		src: config.src_dir + "/**/*.html",
-		main: config.src_dir + "/main/main.html"
+		main: config.src_dir + "/_main/main.html"
 	},
 
 	jade: {
 		src: config.src_dir + "/**/*.jade",
-		main: config.src_dir + "/main/main.jade"
+		main: config.src_dir + "/_main/main.jade"
 	},
 
 	ejs: {
 		src: config.src_dir + "/**/*.ejs",
-		main: config.src_dir + "/main/main.ejs"
+		main: config.src_dir + "/_main/main.ejs"
 	},
 
 	// ToDO: Add thease engines

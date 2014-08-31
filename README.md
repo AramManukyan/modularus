@@ -38,7 +38,6 @@ modularus/
   |  |- main/
   |  |- module-about/
   |  |- module-home/
-  |  |- module-shared/
   |= public/
   |- tasks/
   |  |- <application 'building' tasks>
@@ -53,11 +52,10 @@ modularus/
 - `bower_components/` here are installed third-party vendor libraries by bower package manager. you can read more about bower at [http://bower.io](http://bower.io). This directory is created after installation (see Installation chapter).
 - `node_modules/` here are installed nodeJS libraries which are required for application building or running tests.
 - `src` the main directory where application sources are located.
-    - `assets/` application images/fonts
-    - `common/` common files of application, small custom libraries or helpers
-    - `main/` main files of application like main stylesheet file, main entry point of application or main module from where others are defined(in angualr case), route files, configs and so on. For example you can have a main.js file which will be the entry point of application scripts (can be main controller or file which contains the initialization of all required libraries and so). Also you will have main style file (less/scss/stylus/css or other) from where other styles are connected. I suggest to use any preprocessor (less/scss/stylus) and have main style file and variables file like `variables.less` for style variables instead of using pure CSS. But sure you're free to choose :-)
-    - `module-about/` `module-home` these are example first level modules (see modules chapter) which correspond to "about" and "home" page of our application. 
-    ` `module-shared/` this folder is for modules that are used acrossed multiple first-level modules. They can be a template part with it's own logic like "header" and "footer" or some common javascript functionality or style.
+    - `_assets/` application images/fonts
+    - `_common/` common modules of application (partials, common functionality parts, helpers, custom libraries etc.). Note that sometimes they can contain only template partials like headers, footers, sidebar, or just JS files, or style files.
+    - `_main/` main files of application like main stylesheet file, main entry point of application or main module from where others are defined(in angualr case), route files, configs and so on. For example you can have a main.js file which will be the entry point of application scripts (can be main controller or file which contains the initialization of all required libraries and so). Also you will have main style file (less/scss/stylus/css or other) from where other styles are connected. I suggest to use any preprocessor (less/scss/stylus) and have main style file and variables file like `variables.less` for style variables instead of using pure CSS. But sure you're free to choose :-)
+    - `about/` `home/` these are example first level modules (see modules chapter) which correspond to "about" and "home" page of our application. 
 - `public/` in this folder the application is being assemled from all files. (see build system chapter) **WARNING!** Never edit files in this folder because they are regenerated automatically every time and all your changes will be lost! **Always** work in `src/` folder!
 - `tasks/` tasks for application assembling and building (styles and templates preprocessing, concatenation of multiple files and so on). 
 - `.bowerc` - configuration file for bower
