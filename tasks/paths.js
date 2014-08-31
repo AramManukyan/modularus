@@ -1,15 +1,7 @@
 var config = require("./config.js");
 
 // Important! All vendor scripts and styles should be added manually
-exports.vendor = {
-	scripts: [
-		config.bower_dir + "/jquery/dist/jquery.js"	
-	],
-	styles: [
-		config.bower_dir + "/bootstrap/dist/css/bootstrap.css",
-		config.bower_dir + "/bootstrap/dist/css/bootstrap-theme.css"
-	]
-};
+exports.vendor = require("./paths-vendor.js");
 
 
 // If you don't need anything special, you can stop editing here :-)

@@ -69,6 +69,74 @@ modularus/
 
 ## Installation
 
+Installation process and tools can be a little bit scary at first time, but when you've done and understood it once it's becoming very straight forward. 
+
+### Step 1
+
+First you need to have node.js and npm (node package manager)  installed on your machine. If you don't have nodeJS, please download and install it from [node.js offical website](http://nodejs.org/)
+
+### Step 2
+
+After you have node and npm installed on your machine, you should install **bower** and **gulp**. Open your cmd and run the following command.
+
+`npm install -g bower gulp`
+
+You can read more about [gulp](http://gulpjs.com/) and [bower](http://bower.io/) on their official websites.
+
+### Step 3
+
+After you have installed bower and gulp, and now bower command is available in your cmd, let's install all project third-party library dependencies (like jQuery, Bootstrap, AngularJS, BackboneJS), which should be defined in bover.json file. Run
+
+`bower install`
+
+By default the modularus comes with jQuery and Bootstrap. For more information about bower please refer to [their website](http://bower.io/)
+
+### Step 4
+
+Now when all third party libraries are installed the project is ready to be built and runned (see Build System chapter). For that in your cmd run
+
+`gulp`
+
+If everything is done correctly this command will build the project in "public" directory and run a local web server pointing to "public" directory (by default on [http://localhost:3333/](http://localhost:3333/)).
+
+
+Gulp is configured so that it will watch for file changes re-compile the project if any of files were changed, so you don't have to run `gulp` command any time you make changes in project files.
+
+The local server runs with livereload, so the changes after re-building the project should be visible without refreshing the page in rowser (cool feature, isn't it? ;-) ).
+
+
+So open your favorite browser and navigate to [http://localhost:3333/](http://localhost:3333/).
+
+## Configuration
+
+By default the [build system]() is configured to use pure **JavaScript**, pure **HTML** and **LESS**. But you can easily reconfigure gulp to use different script, template and style preprocessors in `tasks/config.js`.
+
+Also you should **manually** specify the paths to you third-party vendor libraries installed by bower in `tasks/paths-vendor.js`.
+
+The following prerpocessors are available.
+
+*Scripts*
+
+- Pure javascript (.js)
+- CoffeeScript (.coffee)
+- LiveScript (.ls)
+- TypeScript (.ts)
+
+*Templates*
+
+- Pure HTML (.html)
+- Jade (.jade)
+- EJS (.ejs)
+- Mustache (.mtch)
+- Handlebars (.hbs)
+
+*Styles*
+
+- Pure CSS
+- LESS
+- SASS
+- Stylus
+
 
 
 ## Modules - file organization by thear feature
