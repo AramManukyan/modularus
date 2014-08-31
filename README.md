@@ -33,11 +33,11 @@ modularus/
   |- bower_components/
   |- node_modules/
   |- src/
-  |  |- assets/
-  |  |- common/
-  |  |- main/
-  |  |- module-about/
-  |  |- module-home/
+  |  |- _assets/
+  |  |- _common/
+  |  |- _main/
+  |  |- about/
+  |  |- home/
   |= public/
   |- tasks/
   |  |- <application 'building' tasks>
