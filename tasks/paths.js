@@ -14,14 +14,18 @@ exports.assets = [
 
 // Scripts
 exports.scripts = {
-	js: [
-		config.src_dir + "/**/!(main)*.js",
-		config.src_dir + "/_main/main.js"
-	],
-	coffee: [
-		config.src_dir + "/**/!(main)*.coffee",
-		config.src_dir + "/**/*.coffee"
-	]
+	js: {
+		src: [
+			config.src_dir + "/**/!(main)*.js",
+			config.src_dir + "/_main/main.js"
+		]
+	},
+	coffee: {
+		src: [
+			config.src_dir + "/**/!(main)*.coffee",
+			config.src_dir + "/_main/main.coffee"
+		]
+	}
 };
 
 // Styles
@@ -50,28 +54,42 @@ exports.styles = {
 // Templates
 exports.templates = {
 	html: {
-		src: config.src_dir + "/**/*.html",
-		main: config.src_dir + "/_main/main.html"
+		src: [
+			config.src_dir + "/**/*.html"
+		]
 	},
 
 	jade: {
-		src: config.src_dir + "/**/*.jade",
-		main: config.src_dir + "/_main/main.jade"
+		src: [
+			config.src_dir + "/**/*.jade"
+		]
 	},
 
 	ejs: {
-		src: config.src_dir + "/**/*.ejs",
-		main: config.src_dir + "/_main/main.ejs"
+		src: [
+			config.src_dir + "/**/*.ejs"
+		]
+	}
+
+};
+
+// Layouts
+exports.layouts = {
+	html: {
+		src: [
+			config.src_dir + "/**/*.layout.html",
+		]
 	},
 
-	// ToDO: Add thease engines
-	// handlebars: {
-	// 	src: config.src_dir + "/**/*.hbs",
-	// 	main: config.src_dir + "/main/main.hbs"
-	// },
+	jade: {
+		src: [
+			config.src_dir + "/**/*.layout.jade",
+		]
+	},
 
-	// mustache: {
-	// 	src: config.src_dir + "/**/*.must",
-	// 	main: config.src_dir + "/main/main.must"
-	// }
+	ejs: {
+		src: [
+			config.src_dir + "/**/*.layout.ejs"
+		]
+	}
 };

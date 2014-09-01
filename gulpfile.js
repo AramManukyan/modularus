@@ -16,6 +16,7 @@ var gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	concat = require('gulp-concat'),
 	rename = require("gulp-rename"),
+	flatten = require('gulp-flatten'),
 	uglify = require('gulp-uglify');
 
 
@@ -35,7 +36,7 @@ var gulp = require('gulp'),
 		}
 		// Processing pure javascript files
 		else {
-			gulp.src(paths.scripts.js)
+			gulp.src(paths.scripts.js.src)
 				.pipe(concat('app.js'))
 				.pipe(gulp.dest(config.build_dir + '/js'))
 				.pipe(connect.reload());	
@@ -108,10 +109,10 @@ var gulp = require('gulp'),
 
 
 /************************************************************
-*						Templates
+*						Layouts
 ************************************************************/
 
-	gulp.task('templates', function() {
+	gulp.task('layouts', function() {
 
 		if(config.engines.jade) {
 			// ToDo: Jade
@@ -122,13 +123,14 @@ var gulp = require('gulp'),
 		else {
 			// HTML
 
-			gulp.src(paths.templates.html.src)
-		  		.pipe(gulp.dest(config.build_dir + '/templates'));
-
-		  	gulp.src(paths.templates.html.main)
-		  		.pipe(rename("index.html"))
+			gulp.src(paths.layouts.html.src)
+				.pipe(flatten())
+				.pipe(rename(function (path) {
+					path.basename = path.basename.replace(".layout", "");
+				}))
 		  		.pipe(gulp.dest(config.build_dir))
 		  		.pipe(connect.reload());
+		  	
 		}
 	  
 	});
@@ -165,8 +167,8 @@ var gulp = require('gulp'),
 	gulp.task('watch', function() {
 
 		// When application script file changes, handle app scripts
-		gulp.watch(paths.scripts.js, ['scripts_app']);
-		gulp.watch(paths.scripts.coffee, ['scripts_app']);
+		gulp.watch(paths.scripts.js.src, ['scripts_app']);
+		gulp.watch(paths.scripts.coffee.src, ['scripts_app']);
 
 
 		// When template changes, process templates 
@@ -192,7 +194,7 @@ var gulp = require('gulp'),
 		// 'jsHint', 
 		'scripts', 
 		'styles', 
-		'templates'
+		'layouts'
 	]);
 
 	// // Run this task for development
