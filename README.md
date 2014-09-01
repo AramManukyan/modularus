@@ -5,24 +5,19 @@ Boilerplate for creation of modular front-end.
 
 ## Introduction
 
-Modularus is a set of tools and predefined file structure which allows you to create well-organized, easy scalable and maintainable front-end.
+Modularus is a set of tools and predefined file structure which allows you to create well-organized, easy scalable and maintainable front-end applications or wireframes.
 
 
-Usually during front-end development we face with problems such 
+## Supported configurations
 
-* how to organize the application files?
-* how to breakdown large UI into small pieces, and assemble them?
-* how to reuse common parts (header/footer/sidebar etc..) in different layouts?
-* how to make changes in ready front-end with minimal pain?
-* what if the number of layouts is or will be awesomely large in future?
+Modularus supports some common configurations out of the box. 
 
-And finally
+* Frameworks: `AngularJS`, `BackboneJS`, `EmberJS`
+* Scripts: `JavaScript`, `CoffeeScript`
+* Markup:  `HTML`, `EJS`, `Jade`
+* Stylesheets: `CSS`, `LESS`, `SASS`, `Stylus`
 
-* how to make front-end development process enjoyable instead of painful?
-
-During couple of years of development of front-end I came to prediction that correct defined structure and style are the only way to make really great and large-scale front-end applications. But any time on new project I had to do lot of bootstrap work until all the development environment was configured correctly and had satisfactory architecture. Usually I create applications with AngularJS and my code structure looked like [angular-boilerplate](https://github.com/ngbp/ngbp)'s simplified version. But what if we want use different framework or tools? Or maybe we don't need a full-fledged front end application with lot of JavaScript but just a PSD->HTML conversation and creation of wireframes for large amount of different layouts? 
-
-That's why I've decided to create a boilerplate which will be flexible as much as possible and will allow us to use the tools/libraries/frameworks/css-preprocessors/template-engines we want and will provide good practices of scalable and modular application.
+But it doesn't limit or force to use any of those. If you want to use configurations which are different from listed ones, you should just little bit tweak the modularus for your own needs.
 
 ## Directory structure
 
