@@ -1,7 +1,7 @@
 Modularus (under construction)
 =========
 
-Boilerplate for creation of modular front-end.
+Boilerplate for modular front-end creation.
 
 ## Introduction
 
