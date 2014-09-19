@@ -17,8 +17,8 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	rename = require("gulp-rename"),
 	flatten = require('gulp-flatten'),
-	uglify = require('gulp-uglify');
-
+	uglify = require('gulp-uglify'),
+	fileinclude = require('gulp-file-include');
 
 /************************************************************
 *						Scripts
@@ -124,6 +124,10 @@ var gulp = require('gulp'),
 			// HTML
 
 			gulp.src(paths.layouts.html.src)
+				.pipe(fileinclude({
+					prefix: '@@',
+					basepath: '@root'
+				}))
 				.pipe(flatten())
 				.pipe(rename(function (path) {
 					path.basename = path.basename.replace(".layout", "");
@@ -172,9 +176,9 @@ var gulp = require('gulp'),
 
 
 		// When template changes, process templates 
-		gulp.watch(paths.templates.html.src, ['templates']);
-		gulp.watch(paths.templates.jade.src, ['templates']);
-		gulp.watch(paths.templates.ejs.src, ['templates']);
+		gulp.watch(paths.templates.html.src, ['layouts']);
+		gulp.watch(paths.templates.jade.src, ['layouts']);
+		gulp.watch(paths.templates.ejs.src, ['layouts']);
 
 		// When styles changes compile them
 		gulp.watch(paths.styles.css.src, ['styles_app']);
