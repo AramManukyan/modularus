@@ -225,6 +225,7 @@ var gulp = require('gulp'),
 		// 'jsHint', 
 		'scripts', 
 		'styles', 
+		'assets',
 		'layouts',
 		'templates'
 	]);

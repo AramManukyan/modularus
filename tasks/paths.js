@@ -9,7 +9,7 @@ exports.vendor = require("./paths-vendor.js");
 
 // Assets
 exports.assets = [
-	config.src_dir + "assets/**/*"
+	config.src_dir + "/_assets/**/*"
 ];
 
 // Scripts
