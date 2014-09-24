@@ -3,7 +3,7 @@ var exampleApp = {};
 exampleApp.main = angular.module("exampleApp", [
 
 	// Library modules
-	
+	"ngRoute",
 	
 	// Application modules
 	"exampleApp.home",

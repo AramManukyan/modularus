@@ -155,7 +155,7 @@ var gulp = require('gulp'),
 		// 	// HTML
 
 			gulp.src(paths.templates.html.src)
-				.pipe(flatten())
+				// .pipe(flatten())
 		  		.pipe(gulp.dest(config.build_dir + "/templates"))
 		  		.pipe(connect.reload());
 		  	
