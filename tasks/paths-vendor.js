@@ -9,7 +9,9 @@ var config = require("./config.js");
 
 module.exports = {
 	scripts: [
-		config.bower_dir + "/jquery/dist/jquery.js"	
+		config.bower_dir + "/jquery/dist/jquery.js",	
+		config.bower_dir + "/angular/angular.min.js",
+		config.bower_dir + "/angular-route/angular-route.min.js"
 	],
 	styles: [
 		config.bower_dir + "/bootstrap/dist/css/bootstrap.css",

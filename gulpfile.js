@@ -139,7 +139,29 @@ var gulp = require('gulp'),
 	  
 	});
 
+/************************************************************
+*						Templates
+************************************************************/
+	
+	gulp.task('templates', function() {
 
+		// if(config.engines.jade) {
+		// 	// ToDo: Jade
+		// }
+		// else if(config.engines.ejs) {
+		// 	// ToDo: EJS
+		// }
+		// else {
+		// 	// HTML
+
+			gulp.src(paths.templates.html.src)
+				.pipe(flatten())
+		  		.pipe(gulp.dest(config.build_dir + "/templates"))
+		  		.pipe(connect.reload());
+		  	
+		// }
+	  
+	});
 
 /************************************************************
 *						Linting
@@ -175,10 +197,15 @@ var gulp = require('gulp'),
 		gulp.watch(paths.scripts.coffee.src, ['scripts_app']);
 
 
-		// When template changes, process templates 
-		gulp.watch(paths.templates.html.src, ['layouts']);
-		gulp.watch(paths.templates.jade.src, ['layouts']);
-		gulp.watch(paths.templates.ejs.src, ['layouts']);
+		// When layout changes, process layouts 
+		gulp.watch(paths.layouts.html.src, ['layouts']);
+		gulp.watch(paths.layouts.jade.src, ['layouts']);
+		gulp.watch(paths.layouts.ejs.src, ['layouts']);
+
+		// When tamplate changes, process templates 
+		gulp.watch(paths.templates.html.src, ['templates']);
+		gulp.watch(paths.templates.jade.src, ['templates']);
+		gulp.watch(paths.templates.ejs.src, ['templates']);
 
 		// When styles changes compile them
 		gulp.watch(paths.styles.css.src, ['styles_app']);
@@ -198,7 +225,8 @@ var gulp = require('gulp'),
 		// 'jsHint', 
 		'scripts', 
 		'styles', 
-		'layouts'
+		'layouts',
+		'templates'
 	]);
 
 	// // Run this task for development
