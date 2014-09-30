@@ -7,23 +7,33 @@ exampleApp.main
 		templateUrl: 'templates/home/home.html',
 		controller: 'HomeCtrl'
 	}).
+
 	when('/about', {
 		templateUrl: 'templates/about/about.html',
 		controller: 'AboutCtrl',
 	}).
+
 	when('/contact', {
 		templateUrl: 'templates/contact/contact.html',
 		controller: 'ContactCtrl',
-	}).when('/login', {
+	})
+
+	.when('/login', {
 		templateUrl: 'templates/login/login.html',
 		controller: 'LoginCtrl'
-	}).when('/products', {
+	})
+
+	.when('/products', {
 		templateUrl: 'templates/products/products.html',
 		controller: 'ProductsCtrl'
-	}).when('/products/:productId', {
-        templateUrl: 'templates/product_detail/product_detail.html',
+	})
+
+	.when('/products/:productId', {
+        templateUrl: 'templates/products/details/details.html',
         controller: 'ProductDetailCtrl'
-	}).otherwise({
+	})
+
+	.otherwise({
 		redirectTo: '/'
 	});
 });

@@ -11,7 +11,6 @@ exampleApp.main = angular.module("exampleApp", [
 	"exampleApp.header",
 	"exampleApp.login",
 	"exampleApp.products",
-	"exampleApp.product_detail",
 	"exampleApp.home",
 	"exampleApp.about",
 	"exampleApp.contact"
@@ -21,9 +20,6 @@ exampleApp.header = angular.module("exampleApp.header", []);
 
 //Products module
 exampleApp.products = angular.module("exampleApp.products", []);
-
-//Product Details module
-exampleApp.product_detail = angular.module("exampleApp.product_detail", []);
 
 //Login module
 exampleApp.login = angular.module("exampleApp.login",[]);

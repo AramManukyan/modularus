@@ -1,4 +1,4 @@
-exampleApp.product_detail 
+exampleApp.products 
 
 .controller('ProductDetailCtrl',function($scope,$http,$routeParams){
 	
@@ -32,13 +32,3 @@ exampleApp.product_detail
 	};
 	
 });
-
-exampleApp.product_detail 
-.filter('capitalize', function() {
-    return function(input, all) {
-      return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
-    }
-});
-
-  
-  
