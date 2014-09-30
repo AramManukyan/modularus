@@ -1,17 +1,23 @@
 exampleApp.products 
 
-.controller('ProductDetailCtrl',function($scope,$http,$routeParams){
+.controller('ProductDetailCtrl',function($scope, $http, $routeParams, productDetailsService){
 	
 	$scope.product = {};
 	$scope.product_review = {};
 	$scope.activeTab = "description";
 	$scope.stars = 1;
-	
-	$http.get('phones/'+$routeParams.productId+'.json').success(function(data){
+
+	productDetailsService.get('phones/'+$routeParams.productId+'.json', function(data) {
 		$scope.product = data;
 		$scope.product.reviews = [];
 		$scope.mainImage = data.images[0];
 	});
+	
+	// $http.get().success(function(data){
+	// 	$scope.product = data;
+	// 	$scope.product.reviews = [];
+	// 	$scope.mainImage = data.images[0];
+	// });
 	
 	$scope.setImage = function(image){
 		$scope.mainImage  = image;
@@ -26,7 +32,7 @@ exampleApp.products
 	};
 	
 	$scope.saveReview = function(){
-		$scope.product_review.avatar = '/assets/' + ((($scope.product.reviews.length % 2) == 0)?'avatar_m.jpg':'avatar_w.jpg');
+		$scope.product_review.avatar = '/assets/' + ( ( ($scope.product.reviews.length % 2) == 0) ? 'avatar_m.jpg':'avatar_w.jpg');
 		$scope.product.reviews.push($scope.product_review);
 		$scope.product_review = {};
 	};
