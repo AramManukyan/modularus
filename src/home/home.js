@@ -4,6 +4,4 @@ exampleApp.home
 
 	$log.log("In home controller");
 
-})
-
-;
+});

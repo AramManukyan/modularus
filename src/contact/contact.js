@@ -4,6 +4,4 @@ exampleApp.contact
 
 	$log.log("In contact controller");
 
-})
-
-;
+});
