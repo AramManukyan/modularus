@@ -80,13 +80,19 @@ You can read more about [gulp](http://gulpjs.com/) and [bower](http://bower.io/)
 
 ### Step 3
 
+Then you need to install project's local npm dependencies just running
+
+`npm install`
+
+### Step 4
+
 After you have installed bower and gulp, and now bower command is available in your cmd, let's install all project third-party library dependencies (like jQuery, Bootstrap, AngularJS, BackboneJS), which should be defined in bover.json file. Run
 
 `bower install`
 
 By default the modularus comes with jQuery and Bootstrap. For more information about bower please refer to [their website](http://bower.io/)
 
-### Step 4
+### Step 5
 
 Now when all third party libraries are installed the project is ready to be built and runned (see Build System chapter). For that in your cmd run
 
