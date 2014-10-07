@@ -18,8 +18,15 @@ var gulp = require('gulp'),
 	rename = require("gulp-rename"),
 	flatten = require('gulp-flatten'),
 	uglify = require('gulp-uglify'),
-	fileinclude = require('gulp-file-include');
+	fileinclude = require('gulp-file-include'),
+	filter = require('gulp-filter'),
+	mainBowerFiles = require('main-bower-files');
 
+	var filterByExtension = function(extension){  
+		return filter(function(file){
+			return file.path.match(new RegExp('.' + extension + '$'));
+		});
+	};
 /************************************************************
 *						Scripts
 ************************************************************/
@@ -47,9 +54,13 @@ var gulp = require('gulp'),
 
 	// // Copies and concatenates vendor scripts to build dir
 	gulp.task('scripts_vendor', function() {
-		gulp.src(paths.vendor.scripts)
+		/*gulp.src(paths.vendor.scripts)
 			.pipe(concat('vendor.js'))
-			.pipe(gulp.dest(config.build_dir + '/js'));
+			.pipe(gulp.dest(config.build_dir + '/js'));*/
+		gulp.src(mainBowerFiles())
+		.pipe(filterByExtension('js'))
+		.pipe(concat('vendor.js'))
+		.pipe(gulp.dest(config.build_dir + '/js'));
 	});
 
 

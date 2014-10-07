@@ -68,69 +68,8 @@
 									</li>
 								</ul>
 							</div>
-							<div class="tab-pane" ng-class="{active:isActiveTab('reviews')}" >
-								<h3>Reviews</h3>
-								<ul class="media-list">
-<!-- 									<li class="media">
-										<a class="pull-left" href="#">
-											<img class="media-object" ng-src="/assets/avatar_m.jpg" alt="...">
-										</a>
-										<div class="media-body">
-											<h4 class="media-heading">5 Stars</h4>
-											Very cool...
-											<cite class="clearfix ng-binding">John Smith - test@test.com</cite>
-										</div>
-									</li>
-									<li class="media">
-										<a class="pull-left" href="#">
-										<img class="media-object" ng-src="/assets/avatar_w.jpg" alt="...">
-										</a>
-										<div class="media-body">
-											<h4 class="media-heading">2 Stars</h4>
-											Very beautiful :)))))
-										<cite class="clearfix ng-binding">Jane White - west@west.com</cite>
-										</div>
-									</li> -->
-									<li class="media" ng-show="product.reviews" ng-repeat="reviews in product.reviews">
-										<a class="pull-left" href="#">
-											<img class="media-object" ng-src="{{reviews.avatar}}" alt="...">
-										</a>
-										<div class="media-body">
-											<h4 class="media-heading">{{reviews.stars + " Stars"}}</h4>
-											{{reviews.message}}
-											<cite class="clearfix ng-binding">{{reviews.name + " - " + reviews.email}}</cite>
-										</div>
-									</li>
-								</ul>
-
-								<form role="form" name="reviewForm" method="GET" ng-submit="reviewForm.$valid && saveReview()" novalidate>
-									<div class="media">
-										<div class="media-body">
-											<h4 class="media-heading">{{product_review.stars + " Stars"}}</h4>
-											{{product_review.message}}
-											<cite class="clearfix ng-binding">{{product_review.name + " - " + product_review.email}}</cite>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="name">Name</label>
-										<input required type="text" class="form-control" id="name" ng-model="product_review.name" placeholder="Enter your name">
-									</div>
-									<div class="form-group">
-										<label for="email">Email address</label>
-										<input required type="email" class="form-control" id="email" ng-model="product_review.email" placeholder="Enter your email">
-									</div>
-									<div class="form-group">
-										<label for="stars">Stars</label>
-										<select  name="stars" required class="form-control" ng-model="product_review.stars" ng-options="stars for stars in [5,4,3,2,1]">
-											<option value="">Rate the Product</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<label for="message">Message</label>
-										<textarea class="form-control" id="message" required ng-model="product_review.message" rows="3"></textarea>
-									</div>
-									<button type="submit" class="btn btn-default">Submit</button>
-								</form>
+							<div class="tab-pane" ng-class="{active:isActiveTab('reviews')}" ng-controller="ProductReviewCtrl" ng-include="'templates/products/details/reviews/reviews.html'">
+								
 
 
 							</div>

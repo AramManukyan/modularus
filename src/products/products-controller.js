@@ -12,8 +12,16 @@ exampleApp.products
 	productsService.get("phones", function(data) {
 
 		$scope.products = data;
-		$log.log(data);
 
+		$scope.totalItems = data.length;
+
+		$scope.setPage = function () {
+			var offset = ($scope.currentPage - 1) * paginationConfig.itemsPerPage;
+			var limit  = offset + paginationConfig.itemsPerPage ;
+			$scope.products = data.slice( offset , limit );
+		};
+		
+		$scope.$watch( 'currentPage', $scope.setPage );
 	});
 
 

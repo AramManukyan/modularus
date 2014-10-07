@@ -1,10 +1,6 @@
 exampleApp.products
 
-.factory('productsService',function($http){
-
-	// var products = [];
-	// var orderOpt = 'age';
-
+.factory('productsService',function($http,$log){
 
 	function getProducts(type, callback) {
 
@@ -12,29 +8,14 @@ exampleApp.products
 
 			callback(data);
 				
-			// $scope.products = data;
-			// $scope.totalItems = data.length;
-			// $scope.currentPage = 1;
-			
-			// $scope.setPage = function () {
-			// 	var offset = ($scope.currentPage - 1) * paginationConfig.itemsPerPage;
-			// 	var limit  = offset + paginationConfig.itemsPerPage ;
-			// 	$scope.products = data.slice( offset , limit );
-			// };
-			// $scope.$watch( 'currentPage', $scope.setPage );
-
 		}).error(function(){
 
-			console.log('Error');
+			$log.log('Error');
 			callback([]);
 
 		});
 
 	}
-
-
-	
-
 
 	return {
 		get: function(type, callback) {

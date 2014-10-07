@@ -13,7 +13,10 @@ module.exports = {
 		config.bower_dir + "/angular/angular.min.js",
 		config.bower_dir + "/angular-route/angular-route.min.js",
 		config.bower_dir + "/angular-resource/angular-resource.min.js",
-		config.bower_dir + "/angular-bootstrap/ui-bootstrap.js"
+		config.bower_dir + "/angular-bootstrap/ui-bootstrap.js",
+		config.bower_dir + "/firebase/firebase.js",
+		config.bower_dir + "/angularfire/dist/angularfire.min.js",
+		config.bower_dir + "/firebase-simple-login/firebase-simple-login.js",
 	],
 	styles: [
 		config.bower_dir + "/bootstrap/dist/css/bootstrap.css",
