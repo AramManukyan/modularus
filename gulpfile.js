@@ -46,6 +46,7 @@ var gulp = require('gulp'),
 
 		gulp.src(mainBowerFiles())
 		.pipe( filter(['*.js']) )
+		.pipe( uglify() )
 		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest(config.build_dir + '/js'));
 	});
@@ -93,9 +94,9 @@ var gulp = require('gulp'),
 
 	gulp.task('assets_vendor', function() {
 
-		// gulp.src(mainBowerFiles())
-		// .pipe(filter(['/**/!(*.css|*.js)']))
-		// .pipe(gulp.dest(config.build_dir + '/assets'));
+		gulp.src(mainBowerFiles())
+		.pipe(filter(['/**/*', '!*.js']))
+		.pipe(gulp.dest(config.build_dir + '/assets'));
 
 	});
 
