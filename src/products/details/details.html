@@ -1,3 +1,4 @@
+<!-- Include Header -->		
 <ng-include src="'templates/_common/header/header.html'"></ng-include>
 
 	<div class="container-fluid">
@@ -68,11 +69,10 @@
 									</li>
 								</ul>
 							</div>
-							<div class="tab-pane" ng-class="{active:isActiveTab('reviews')}" ng-controller="ProductReviewCtrl" ng-include="'templates/products/details/reviews/reviews.html'">
+
+							<!-- Include Reviews -->
+							<ng-include src="'templates/products/details/reviews/reviews.html'" class="tab-pane" ng-class="{active:isActiveTab('reviews')}" ng-controller="ProductReviewCtrl" ng-include=""></ng-include>
 								
-
-
-							</div>
 						</div>
 					</div>
 				</div>
@@ -82,5 +82,6 @@
 			</div>
 		</div>
 	<div>
-		
+
+<!-- Include Footer -->		
 <ng-include src="'templates/_common/footer/footer.html'"></ng-include>

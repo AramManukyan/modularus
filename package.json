@@ -4,9 +4,11 @@
   "devDependencies": {},
   "dependencies": {
     "gulp": "^3.8.8",
+    "gulp-bower": "0.0.6",
     "gulp-concat": "^2.3.3",
     "gulp-connect": "^2.0.6",
     "gulp-file-include": "~0.5.1",
+    "gulp-filter": "^1.0.2",
     "gulp-flatten": "0.0.2",
     "gulp-include": "~1.0.1",
     "gulp-jshint": "^1.7.1",
@@ -14,6 +16,6 @@
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^0.3.1",
     "gulp-util": "^3.0.0",
-    "gulp-bower": "0.0.6"
+    "main-bower-files": "^2.0.0"
   }
 }

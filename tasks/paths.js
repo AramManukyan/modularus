@@ -1,7 +1,7 @@
 var config = require("./config.js");
 
 // Important! All vendor scripts and styles should be added manually
-exports.vendor = require("./paths-vendor.js");
+// exports.vendor = require("./paths-vendor.js");
 
 
 // If you don't need anything special, you can stop editing here :-)
@@ -69,7 +69,9 @@ exports.templates = {
 		src: [
 			config.src_dir + "/**/!(*.layout)*.ejs"
 		]
-	}
+	},
+
+	
 
 };
 

@@ -22,11 +22,6 @@ var gulp = require('gulp'),
 	filter = require('gulp-filter'),
 	mainBowerFiles = require('main-bower-files');
 
-	var filterByExtension = function(extension){  
-		return filter(function(file){
-			return file.path.match(new RegExp('.' + extension + '$'));
-		});
-	};
 /************************************************************
 *						Scripts
 ************************************************************/
@@ -37,28 +32,20 @@ var gulp = require('gulp'),
 	// // Copies app scripts to build dir
 	gulp.task('scripts_app', function() {
 
-
-		if(config.engines.coffee) {
-			// ToDo: Coffee
-		}
-		// Processing pure javascript files
-		else {
-			gulp.src(paths.scripts.js.src)
-				.pipe(concat('app.js'))
-				.pipe(gulp.dest(config.build_dir + '/js'))
-				.pipe(connect.reload());	
-		}
-		
+		gulp.src(paths.scripts.js.src)
+			.pipe(concat('app.js'))
+			.pipe(gulp.dest(config.build_dir + '/js'))
+			.pipe(connect.reload());	
 
 	});
 
 	// // Copies and concatenates vendor scripts to build dir
 	gulp.task('scripts_vendor', function() {
-		/*gulp.src(paths.vendor.scripts)
-			.pipe(concat('vendor.js'))
-			.pipe(gulp.dest(config.build_dir + '/js'));*/
+
+		console.log(mainBowerFiles());
+
 		gulp.src(mainBowerFiles())
-		.pipe(filterByExtension('js'))
+		.pipe( filter(['*.js']) )
 		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest(config.build_dir + '/js'));
 	});
@@ -72,46 +59,47 @@ var gulp = require('gulp'),
 
 	gulp.task('styles_app', function() {
 
-		if(config.engines.less) {
 
-			var less = require("gulp-less");
+		var less = require("gulp-less");
 
-			var lessOptions = {
-				paths: [ 
-					config.src_dir + "/app",
-					config.bower_dir,
-				]
-			};
+		var lessOptions = {
+			paths: [ 
+				config.src_dir + "/app",
+				config.bower_dir,
+			]
+		};
 
-			gulp.src(paths.styles.less.main)
-				.pipe(less(lessOptions).on('error', gutil.log))
-				.pipe(gulp.dest(config.build_dir + '/css'))
-				.pipe(connect.reload());
-		}
-		else if(config.engines.scss) {
-			// Todo: SCSS
-		}
-		else if(config.engines.stylus) {
-			// Todo: STYLUS
-		}
-		else {
-			// Todo: Pure CSS
-		}
+		gulp.src(paths.styles.less.main)
+			.pipe(less(lessOptions).on('error', gutil.log))
+			.pipe(gulp.dest(config.build_dir + '/css'))
+			.pipe(connect.reload());
 
-		
 	});
 
 	gulp.task('styles_vendor', function() {
-		gulp.src(paths.vendor.styles)
-			.pipe(concat('vendor.css'))
-			.pipe(gulp.dest(config.build_dir + '/css'));
+
+		gulp.src(mainBowerFiles())
+		.pipe(filter(['*.css']))
+		.pipe(concat('vendor.css'))
+		.pipe(gulp.dest(config.build_dir + '/css'));
+
 	});
 
 /************************************************************
 *						Assets
 ************************************************************/
+	
+	gulp.task('assets', ['assets_app', 'assets_vendor']);
 
-	gulp.task('assets', function() {
+	gulp.task('assets_vendor', function() {
+
+		// gulp.src(mainBowerFiles())
+		// .pipe(filter(['/**/!(*.css|*.js)']))
+		// .pipe(gulp.dest(config.build_dir + '/assets'));
+
+	});
+
+	gulp.task('assets_app', function() {
 
 		gulp.src(paths.assets)
 			.pipe(gulp.dest(config.build_dir + '/assets'));
@@ -125,28 +113,19 @@ var gulp = require('gulp'),
 
 	gulp.task('layouts', function() {
 
-		if(config.engines.jade) {
-			// ToDo: Jade
-		}
-		else if(config.engines.ejs) {
-			// ToDo: EJS
-		}
-		else {
-			// HTML
 
-			gulp.src(paths.layouts.html.src)
-				.pipe(fileinclude({
-					prefix: '@@',
-					basepath: '@root'
-				}))
-				.pipe(flatten())
-				.pipe(rename(function (path) {
-					path.basename = path.basename.replace(".layout", "");
-				}))
-		  		.pipe(gulp.dest(config.build_dir))
-		  		.pipe(connect.reload());
+		gulp.src(paths.layouts.html.src)
+			.pipe(fileinclude({
+				prefix: '@@',
+				basepath: '@root'
+			}))
+			.pipe(flatten())
+			.pipe(rename(function (path) {
+				path.basename = path.basename.replace(".layout", "");
+			}))
+	  		.pipe(gulp.dest(config.build_dir))
+	  		.pipe(connect.reload());
 		  	
-		}
 	  
 	});
 
@@ -156,21 +135,10 @@ var gulp = require('gulp'),
 	
 	gulp.task('templates', function() {
 
-		// if(config.engines.jade) {
-		// 	// ToDo: Jade
-		// }
-		// else if(config.engines.ejs) {
-		// 	// ToDo: EJS
-		// }
-		// else {
-		// 	// HTML
-
-			gulp.src(paths.templates.html.src)
-				// .pipe(flatten())
-		  		.pipe(gulp.dest(config.build_dir + "/templates"))
-		  		.pipe(connect.reload());
-		  	
-		// }
+		gulp.src(paths.templates.html.src)
+			// .pipe(flatten())
+	  		.pipe(gulp.dest(config.build_dir + "/templates"))
+	  		.pipe(connect.reload());
 	  
 	});
 

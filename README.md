@@ -15,7 +15,7 @@ Modularus supports some common configurations out of the box.
 * Frameworks: `AngularJS`, `BackboneJS`, `EmberJS`
 * Scripts: `JavaScript`, `CoffeeScript`
 * Markup:  `HTML`, `EJS`, `Jade`
-* Stylesheets: `CSS`, `LESS`, `SASS`, `Stylus`
+* Stylesheets: `CSS`, `LESS`, `SASS`
 
 But it doesn't limit or force to use any of those. If you want to use configurations which are different from listed ones, you should just little bit tweak the modularus for your own needs.
 
