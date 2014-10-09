@@ -5,8 +5,13 @@ exampleApp.main
 	$routeProvider
 	
 	.when('/', {
-		templateUrl: 'templates/home/home.html',
-		controller: 'HomeCtrl'
+		templateUrl: 'templates/reports/reports.html',
+		controller: 'ReportsCtrl'
+	})
+
+	.when('/reports/:reportName', {
+		templateUrl: 'templates/reports/reports.html',
+		controller: 'ReportsCtrl'
 	})
 
 	.otherwise({

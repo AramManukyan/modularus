@@ -7,11 +7,11 @@ exampleApp.main = angular.module("exampleApp", [
 	
 	// Application modules
 	"exampleApp.header",
-	"exampleApp.home"
+	"exampleApp.reports",
 ]);
 
 // Header module
 exampleApp.header = angular.module("exampleApp.header", []);
 
-// Home module
-exampleApp.home = angular.module("exampleApp.home", []);
+// Reports module
+exampleApp.reports = angular.module("exampleApp.reports", []);

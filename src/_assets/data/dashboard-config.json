@@ -1,76 +1,69 @@
 {
-	"reports": [
-
-		{
-			"name": "prices",
-			"title": "Prices",
-			"data": [
-
-				{
-					"name": "gas",
-					"title": "Gas report tab title",
-					"widgets": [
-						{
-							"type": "datagrid",
-							"title": "Some Table Widget",
-							"width": 12
-						},
-						{
-							"type": "plain",
-							"title": "Some Plain Type Widget",
-							"width": 6
-						},
-						{
-							"type": "linechart",
-							"title": "Some Linechart",
-							"width": 6
-						},
-					]
-				},
-
-				{
-					"name": "taxes",
-					"title": "Taxes report tab title",
-					"widgets": [
-						{
-							"type": "sometype",
-							"title": "Some Tipe Widget",
-							"width": 12
-						}
-					]
-				}
-
-			]
-		},
-
-		{
-			"name": "income",
-			"title": "Income",
-			"data": [
-				{
-					"name": "it",
-					"title": "It",
-					"widgets": [
-						{
-							"type": "datagrid",
-							"title": "Some Table Widget",
-							"width": 12
-						},
-						{
-							"type": "plain",
-							"title": "Some Plain Type Widget",
-							"width": 6
-						},
-						{
-							"type": "linechart",
-							"title": "Some Linechart",
-							"width": 6
-						},
-					]
-				}
-			]
-		}
-
-
-	]
+    "reports": [
+        {
+            "name": "prices",
+            "title": "Prices",
+            "data": [
+                {
+                    "name": "gas",
+                    "title": "Gas report tab title",
+                    "widgets": [
+                        {
+                            "type": "datagrid",
+                            "title": "Some Table Widget",
+                            "width": 12
+                        },
+                        {
+                            "type": "plain",
+                            "title": "Some Plain Type Widget",
+                            "width": 6
+                        },
+                        {
+                            "type": "linechart",
+                            "title": "Some Linechart",
+                            "width": 6
+                        }
+                    ]
+                },
+                {
+                    "name": "taxes",
+                    "title": "Taxes report tab title",
+                    "widgets": [
+                        {
+                            "type": "sometype",
+                            "title": "Some Tipe Widget",
+                            "width": 12
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "income",
+            "title": "Income",
+            "data": [
+                {
+                    "name": "it",
+                    "title": "It",
+                    "widgets": [
+                        {
+                            "type": "datagrid",
+                            "title": "Some Table Widget",
+                            "width": 12
+                        },
+                        {
+                            "type": "plain",
+                            "title": "Some Plain Type Widget",
+                            "width": 6
+                        },
+                        {
+                            "type": "linechart",
+                            "title": "Some Linechart",
+                            "width": 6
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }
