@@ -1,0 +1,147 @@
+<ng-include src="'templates/_common/header/header.html'"></ng-include>
+
+	<div class="container-fluid">
+		<ol class="breadcrumb">
+			<li><a href="#">Home</a></li>
+			<li><a href="#products">Products</a></li>
+			<li class="active">{{product.name}}</li>
+		</ol>
+		<div class="row">
+			<div class="col-lg-4 col-md-4">
+				<div class="thumbnail">
+					<img ng-src="{{mainImage}}">
+
+				</div>
+				<div class="row">
+					<div class="col-xs-4 col-md-3" ng-repeat="image in product.images">
+						<a class="thumbnail" ng-click="setImage(image)">
+						<img ng-src="{{image}}">
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8 col-md-8">	
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h1 class="panel-title">{{product.name}}</h1>
+						<span class="pull-right">
+						<ul class="nav nav-tabs panel-tabs">
+							<li ng-class="{active:isActiveTab('description')}" ><a ng-click="setTab('description')">Description</a></li>
+							<li ng-class="{active:isActiveTab('details')}"><a ng-click="setTab('details')">Details</a></li>
+							<li ng-class="{active:isActiveTab('reviews')}" ><a ng-click="setTab('reviews')">Reviews</a></li>
+						</ul>
+						</span>
+					</div>
+					<div class="panel-body">
+						<div class="tab-content">
+							<div class="tab-pane" ng-class="{active:isActiveTab('description')}" >
+								<h3>Description</h3>
+								<p class="text-justify">{{product.description}}</p>
+							</div>
+							<div class="tab-pane" ng-class="{active:isActiveTab('details')}" >
+								<h3>Details</h3>
+								<ul class="detailsList">
+									<li >
+										<h4>Availability and Networks</h4>
+										<table class="table table-hover table-striped">
+											<tr><th colspan="2">Availability</th></tr>
+											<tr ng-repeat="availability in product.availability">
+												<td>{{availability}}</td><td></td>
+											</tr>
+										</table>
+									</li>
+									<li >
+										<h4>Battery</h4>
+										<table class="table table-hover table-striped">
+										<tr ng-repeat="(type,battery) in product.battery">
+											<td>{{type | capitalize}}</td><td>{{battery}}</td>
+										</tr>
+										</table>
+									</li>
+									<li >
+										<h4>Storage and Memory</h4>
+										<table class="table table-hover table-striped">
+											<tr ng-repeat="(type,storage) in product.storage">
+												<td>{{type | capitalize}}</td><td>{{storage}}</td>
+											</tr>
+										</table>
+									</li>
+								</ul>
+							</div>
+							<div class="tab-pane" ng-class="{active:isActiveTab('reviews')}" >
+								<h3>Reviews</h3>
+								<ul class="media-list">
+<!-- 									<li class="media">
+										<a class="pull-left" href="#">
+											<img class="media-object" ng-src="/assets/avatar_m.jpg" alt="...">
+										</a>
+										<div class="media-body">
+											<h4 class="media-heading">5 Stars</h4>
+											Very cool...
+											<cite class="clearfix ng-binding">John Smith - test@test.com</cite>
+										</div>
+									</li>
+									<li class="media">
+										<a class="pull-left" href="#">
+										<img class="media-object" ng-src="/assets/avatar_w.jpg" alt="...">
+										</a>
+										<div class="media-body">
+											<h4 class="media-heading">2 Stars</h4>
+											Very beautiful :)))))
+										<cite class="clearfix ng-binding">Jane White - west@west.com</cite>
+										</div>
+									</li> -->
+									<li class="media" ng-show="product.reviews" ng-repeat="reviews in product.reviews">
+										<a class="pull-left" href="#">
+											<img class="media-object" ng-src="{{reviews.avatar}}" alt="...">
+										</a>
+										<div class="media-body">
+											<h4 class="media-heading">{{reviews.stars + " Stars"}}</h4>
+											{{reviews.message}}
+											<cite class="clearfix ng-binding">{{reviews.name + " - " + reviews.email}}</cite>
+										</div>
+									</li>
+								</ul>
+
+								<form role="form" name="reviewForm" method="GET" ng-submit="reviewForm.$valid && saveReview()" novalidate>
+									<div class="media">
+										<div class="media-body">
+											<h4 class="media-heading">{{product_review.stars + " Stars"}}</h4>
+											{{product_review.message}}
+											<cite class="clearfix ng-binding">{{product_review.name + " - " + product_review.email}}</cite>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="name">Name</label>
+										<input required type="text" class="form-control" id="name" ng-model="product_review.name" placeholder="Enter your name">
+									</div>
+									<div class="form-group">
+										<label for="email">Email address</label>
+										<input required type="email" class="form-control" id="email" ng-model="product_review.email" placeholder="Enter your email">
+									</div>
+									<div class="form-group">
+										<label for="stars">Stars</label>
+										<select  name="stars" required class="form-control" ng-model="product_review.stars" ng-options="stars for stars in [5,4,3,2,1]">
+											<option value="">Rate the Product</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="message">Message</label>
+										<textarea class="form-control" id="message" required ng-model="product_review.message" rows="3"></textarea>
+									</div>
+									<button type="submit" class="btn btn-default">Submit</button>
+								</form>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div>
+				</div>
+			</div>
+		</div>
+	<div>
+		
+<ng-include src="'templates/_common/footer/footer.html'"></ng-include>

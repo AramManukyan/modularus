@@ -9,21 +9,21 @@ exports.vendor = require("./paths-vendor.js");
 
 // Assets
 exports.assets = [
-	config.src_dir + "assets/**/*"
+	config.src_dir + "/_assets/**/*"
 ];
 
 // Scripts
 exports.scripts = {
 	js: {
 		src: [
-			config.src_dir + "/**/!(main)*.js",
-			config.src_dir + "/_main/main.js"
+			config.src_dir + "/_main/main.js",
+			config.src_dir + "/**/!(main)*.js"
 		]
 	},
 	coffee: {
 		src: [
-			config.src_dir + "/**/!(main)*.coffee",
-			config.src_dir + "/_main/main.coffee"
+			config.src_dir + "/_main/main.coffee",
+			config.src_dir + "/**/!(main)*.coffee"
 		]
 	}
 };
@@ -55,19 +55,19 @@ exports.styles = {
 exports.templates = {
 	html: {
 		src: [
-			config.src_dir + "/**/*.html"
+			config.src_dir + "/**/!(*.layout)*.html"
 		]
 	},
 
 	jade: {
 		src: [
-			config.src_dir + "/**/*.jade"
+			config.src_dir + "/**/!(*.layout)*.jade"
 		]
 	},
 
 	ejs: {
 		src: [
-			config.src_dir + "/**/*.ejs"
+			config.src_dir + "/**/!(*.layout)*.ejs"
 		]
 	}
 
