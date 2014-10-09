@@ -2,14 +2,14 @@
 <div class="collapse navbar-collapse navbar-ex1-collapse">
 	<ul class="nav navbar-nav side-nav">
 		<li ng-repeat="menu in reports" ng-switch on="menu.data.length">
-				<a href="index.html" ng-switch-when="1">{{menu.title}}</a>
+				<a ng-class="{active:isActive(submenu.name)}" ng-href="#{{menu.name}}" ng-switch-when="1">{{menu.title}}</a>
 
 				<a href="javascript:;" ng-switch-default data-toggle="collapse" 
 				data-target="{{'#' + menu.name}}">{{menu.title}} <i class="fa fa-fw fa-caret-down"></i></a>
 
 				<ul id="{{menu.name}}" class="collapse" ng-switch-default>
 					<li ng-repeat="submenu in menu.data">
-						<a href="#">{{submenu.title}}</a>
+						<a ng-href="#{{menu.name}}/{{submenu.name}}">{{submenu.title}}</a>
 					</li>
 				</ul>
 		</li>
