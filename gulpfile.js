@@ -101,11 +101,14 @@ var lessOptions = {
 
 		for(var i in paths_vendor.assets) {
 
-			var src = config.bower_dir + paths_vendor.assets.src;
-			var dest = paths_vendor.assets.dest;
+			var src = config.bower_dir + paths_vendor.assets[i].src;
+			var dest = config.build_dir + paths_vendor.assets[i].dest;
+
+			console.log(src);
+			console.log(dest);
 
 			gulp.src(src)
-				.pipe(gulp.dest(config.build_dir + dest));
+				.pipe(gulp.dest(dest));
 
 		}
 

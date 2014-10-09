@@ -9,7 +9,7 @@ module.exports = {
 	// ],
 	assets: [
 		{
-			src: "/font-awsome/fonts/*",
+			src: "/font-awesome/fonts/**/*",
 			dest: "/fonts"
 		}
 	]
