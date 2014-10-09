@@ -1,0 +1,87 @@
+<!-- Include Header -->		
+<ng-include src="'templates/_common/header/header.html'"></ng-include>
+
+	<div class="container-fluid">
+		<ol class="breadcrumb">
+			<li><a href="#">Home</a></li>
+			<li><a href="#products">Products</a></li>
+			<li class="active">{{product.name}}</li>
+		</ol>
+		<div class="row">
+			<div class="col-lg-4 col-md-4">
+				<div class="thumbnail">
+					<img ng-src="{{mainImage}}">
+
+				</div>
+				<div class="row">
+					<div class="col-xs-4 col-md-3" ng-repeat="image in product.images">
+						<a class="thumbnail" ng-click="setImage(image)">
+						<img ng-src="{{image}}">
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8 col-md-8">	
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h1 class="panel-title">{{product.name}}</h1>
+						<span class="pull-right">
+						<ul class="nav nav-tabs panel-tabs">
+							<li ng-class="{active:isActiveTab('description')}" ><a ng-click="setTab('description')">Description</a></li>
+							<li ng-class="{active:isActiveTab('details')}"><a ng-click="setTab('details')">Details</a></li>
+							<li ng-class="{active:isActiveTab('reviews')}" ><a ng-click="setTab('reviews')">Reviews</a></li>
+						</ul>
+						</span>
+					</div>
+					<div class="panel-body">
+						<div class="tab-content">
+							<div class="tab-pane" ng-class="{active:isActiveTab('description')}" >
+								<h3>Description</h3>
+								<p class="text-justify">{{product.description}}</p>
+							</div>
+							<div class="tab-pane" ng-class="{active:isActiveTab('details')}" >
+								<h3>Details</h3>
+								<ul class="detailsList">
+									<li >
+										<h4>Availability and Networks</h4>
+										<table class="table table-hover table-striped">
+											<tr><th colspan="2">Availability</th></tr>
+											<tr ng-repeat="availability in product.availability">
+												<td>{{availability}}</td><td></td>
+											</tr>
+										</table>
+									</li>
+									<li >
+										<h4>Battery</h4>
+										<table class="table table-hover table-striped">
+										<tr ng-repeat="(type,battery) in product.battery">
+											<td>{{type | capitalize}}</td><td>{{battery}}</td>
+										</tr>
+										</table>
+									</li>
+									<li >
+										<h4>Storage and Memory</h4>
+										<table class="table table-hover table-striped">
+											<tr ng-repeat="(type,storage) in product.storage">
+												<td>{{type | capitalize}}</td><td>{{storage}}</td>
+											</tr>
+										</table>
+									</li>
+								</ul>
+							</div>
+
+							<!-- Include Reviews -->
+							<ng-include src="'templates/products/details/reviews/reviews.html'" class="tab-pane" ng-class="{active:isActiveTab('reviews')}" ng-controller="ProductReviewCtrl" ></ng-include>
+								
+						</div>
+					</div>
+				</div>
+				
+				<div>
+				</div>
+			</div>
+		</div>
+	<div>
+
+<!-- Include Footer -->		
+<ng-include src="'templates/_common/footer/footer.html'"></ng-include>
