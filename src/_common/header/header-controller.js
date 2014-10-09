@@ -1,6 +1,6 @@
 exampleApp.header
 
-.controller("HeaderCtrl", function($scope, $location) {
+.controller("HeaderCtrl", function($scope, $log, $location) {
 
 	$scope.navbarCollapsed = true;
 	
