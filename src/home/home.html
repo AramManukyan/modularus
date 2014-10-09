@@ -1,13 +1,15 @@
-<ng-include src="'templates/_common/header/header.html'"></ng-include>
+<ng-include src="'templates/_common/navigation/navigation.html'"></ng-include>
 
-	<div class="container">
+<div id="page-wrapper">
+
+	<div class="container-fluid">
+		<!-- Breadcrumbs -->
+		<ng-include src="'templates/_common/breadcrumbs/breadcrumbs.html'"></ng-include>
 		
-		<div class="well some-home-specific-class">
-			
-			<h1>THis is Home</h1>
-			
-		</div>
-		
+		<!-- Some example layout -->
+		<ng-include src="'templates/home/home-panels.html'"></ng-include>
+
 	</div>
-
-<ng-include src="'templates/_common/footer/footer.html'"></ng-include>
+	<!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

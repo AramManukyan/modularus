@@ -17,7 +17,7 @@ exports.scripts = {
 	js: {
 		src: [
 			config.src_dir + "/_main/main.js",
-			config.src_dir + "/**/!(main)*.js",
+			config.src_dir + "/**/!(main.js)*.js",
 			"!"+config.src_dir + "/src-config.js"
 		]
 	},
