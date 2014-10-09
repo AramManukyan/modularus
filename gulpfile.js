@@ -27,7 +27,15 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	fileinclude = require('gulp-file-include'),
 	filter = require('gulp-filter'),
-	mainBowerFiles = require('main-bower-files');
+	mainBowerFiles = require('main-bower-files'),
+	less = require("gulp-less");
+
+var lessOptions = {
+	paths: [ 
+		config.src_dir,
+		config.bower_dir,
+	]
+};
 
 /************************************************************
 *						Scripts
@@ -49,11 +57,11 @@ var gulp = require('gulp'),
 	// // Copies and concatenates vendor scripts to build dir
 	gulp.task('scripts_vendor', function() {
 
-		console.log(mainBowerFiles());
+		// console.log(mainBowerFiles());
 
 		gulp.src(mainBowerFiles())
 		.pipe( filter(['*.js']) )
-		.pipe( uglify() )
+		// .pipe( uglify() )
 		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest(config.build_dir + '/js'));
 	});
@@ -67,16 +75,6 @@ var gulp = require('gulp'),
 
 	gulp.task('styles_app', function() {
 
-
-		var less = require("gulp-less");
-
-		var lessOptions = {
-			paths: [ 
-				config.src_dir + "/app",
-				config.bower_dir,
-			]
-		};
-
 		gulp.src(paths.styles.less.main)
 			.pipe(less(lessOptions).on('error', gutil.log))
 			.pipe(gulp.dest(config.build_dir + '/css'))
@@ -86,10 +84,9 @@ var gulp = require('gulp'),
 
 	gulp.task('styles_vendor', function() {
 
-		gulp.src(mainBowerFiles())
-		.pipe(filter(['*.css']))
-		.pipe(concat('vendor.css'))
-		.pipe(gulp.dest(config.build_dir + '/css'));
+		gulp.src(config.src_dir + '/_vendor/vendor.less')
+			.pipe(less(lessOptions).on('error', gutil.log))
+			.pipe(gulp.dest(config.build_dir + '/css'));
 
 	});
 
@@ -101,16 +98,16 @@ var gulp = require('gulp'),
 
 	gulp.task('assets_vendor', function() {
 
-		// gulp.src(mainBowerFiles(), { base: config.bower_dir })
-		// .pipe(filter(
-		// 	[
-		// 		'*',
-		// 		'!*.js',
-		// 		'!*.css',
-		// 		'!*.less'
-		// 	]
-		// ))
-		// .pipe(gulp.dest(config.build_dir));
+
+		for(var i in paths_vendor.assets) {
+
+			var src = config.bower_dir + paths_vendor.assets.src;
+			var dest = paths_vendor.assets.dest;
+
+			gulp.src(src)
+				.pipe(gulp.dest(config.build_dir + dest));
+
+		}
 
 	});
 
