@@ -8,6 +8,11 @@
     "angular": "~1.2.25",
     "angular-route": "~1.2.25",
     "angular-resource": "~1.2.25",
-    "angular-bootstrap": "~0.11.2"
+    "angular-bootstrap": "~0.11.2",
+    "firebase": "~1.1.0",
+    "angularfire": "~0.8.2"
+  },
+  "resolutions": {
+    "firebase": "~1.1.0"
   }
 }

@@ -1,4 +1,5 @@
 {
-  "json": "bower.json"
+  "cwd": "src",
+  "directory": "../bower_components"
 }
 

@@ -6,6 +6,7 @@ exampleApp.main = angular.module("exampleApp", [
 	"ngRoute",
 	"ngResource",
 	"ui.bootstrap",
+	"firebase",
 	
 	// Application modules
 	"exampleApp.header",
