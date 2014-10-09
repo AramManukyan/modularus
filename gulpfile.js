@@ -5,6 +5,13 @@
 	var config = require("./tasks/config");
 	var paths = require("./tasks/paths.js");
 
+/************************************************************
+*						Project Configs
+************************************************************/
+
+	var config_vendor = require("./src/project-config");
+	var paths_vendor = require("./src/project-paths-vendor");
+
 
 /************************************************************
 *					Gulp Modules
@@ -94,9 +101,16 @@ var gulp = require('gulp'),
 
 	gulp.task('assets_vendor', function() {
 
-		gulp.src(mainBowerFiles())
-		.pipe(filter(['/**/*', '!*.js']))
-		.pipe(gulp.dest(config.build_dir + '/assets'));
+		// gulp.src(mainBowerFiles(), { base: config.bower_dir })
+		// .pipe(filter(
+		// 	[
+		// 		'*',
+		// 		'!*.js',
+		// 		'!*.css',
+		// 		'!*.less'
+		// 	]
+		// ))
+		// .pipe(gulp.dest(config.build_dir));
 
 	});
 
