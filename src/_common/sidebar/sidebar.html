@@ -1,8 +1,8 @@
 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 <div class="collapse navbar-collapse navbar-ex1-collapse">
 	<ul class="nav navbar-nav side-nav">
-		<li ng-repeat="(index,menu) in reports" ng-class="{active:isActive('{{index}}')}">
-				<a ng-href="#reports/{{index}}">{{menu.title}}</a>
+		<li ng-repeat="(index,menu) in reports" ng-class="{active:isActive('{{menu.id}}')}">
+				<a ng-href="#reports/{{menu.id}}">{{menu.title}}</a>
 		</li>
 	</ul>
 </div>

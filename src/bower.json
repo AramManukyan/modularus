@@ -9,6 +9,6 @@
     "angular-route": "~1.2.25",
     "font-awesome": "~4.2.0",
     "d3": "~3.4.12",
-    "angular-bootstrap": "~0.11.2"
+    "nvd3": "~1.1.15-beta"
   }
 }

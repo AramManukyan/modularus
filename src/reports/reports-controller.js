@@ -4,16 +4,19 @@ exampleApp.reports
 
 	$scope.reports = [];
 	$scope.activeTab = 0;
+	
+	if(typeof $routeParams.reportId === "undefined"){
+		$routeParams.reportId = "report-1";
+	}
 
 	ReportsService.get(function(data){
 
 		$scope.reports = data.reports;
-
-		if(typeof $routeParams.reportId === "undefined"){
-			$routeParams.reportId = "0";
-		}
-		$scope.report = data.reports[$routeParams.reportId];
+		
+		$scope.report = ReportsService.getById($routeParams.reportId,data.reports);
 	});
+
+
 
 	$scope.isActiveTab = function(index){
 		return index === $scope.activeTab;

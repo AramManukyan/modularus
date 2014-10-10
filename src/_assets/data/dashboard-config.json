@@ -1,10 +1,12 @@
 {
     "reports": [
         {
+            "id": "report-1",
             "name": "prices",
             "title": "Prices",
             "data": [
                 {
+                    "id": "report-2",
                     "name": "gas",
                     "title": "Gas report tab title",
                     "widgets": [
@@ -26,6 +28,7 @@
                     ]
                 },
                 {
+                    "id": "report-3",
                     "name": "taxes",
                     "title": "Taxes report tab title",
                     "widgets": [
@@ -39,10 +42,12 @@
             ]
         },
         {
+            "id": "report-4",
             "name": "income",
             "title": "Income",
             "data": [
                 {
+                    "id": "report-5",
                     "name": "it",
                     "title": "It",
                     "widgets": [

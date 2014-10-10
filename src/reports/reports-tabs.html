@@ -1,9 +1,8 @@
 <!-- Nav tabs -->
-<ul class="nav nav-tabs right-to-left" role="tablist">
+<ul class="nav nav-tabs  right-to-left" role="tablist">
   <li ng-class="{active:isActiveTab(index)}" ng-repeat="(index,tabs) in report.data" ng-click="setTab(index)"><a role="tab" data-toggle="tab">{{tabs.title}}</a></li>
  
 </ul>
-
 <!-- Tab panes -->
 <div class="tab-content">
   <div class="tab-pane" ng-class="{active:isActiveTab(index)}" ng-repeat="(index,panel) in report.data">

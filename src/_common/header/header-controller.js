@@ -6,7 +6,7 @@ exampleApp.header
 	
 	$scope.isActive = function(route) {
 		if(typeof $routeParams.reportId === "undefined"){
-        	$routeParams.reportId = "0";
+        	$routeParams.reportId = "prices";
         }
         return route === $routeParams.reportId;
     }
