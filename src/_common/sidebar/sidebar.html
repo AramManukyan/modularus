@@ -1,17 +1,8 @@
 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 <div class="collapse navbar-collapse navbar-ex1-collapse">
 	<ul class="nav navbar-nav side-nav">
-		<li ng-repeat="menu in reports" ng-switch on="menu.data.length" ng-class="{active:isActive('{{'/' + menu.name}}')}">
-				<a ng-href="#{{menu.name}}" ng-switch-when="1">{{menu.title}}</a>
-
-				<a href="javascript:;"   ng-switch-default data-toggle="collapse" 
-				data-target="{{'#' + menu.name}}">{{menu.title}} <i class="fa fa-fw fa-caret-down"></i></a>
-
-				<ul id="{{menu.name}}" class="collapse" ng-switch-default>
-					<li ng-repeat="submenu in menu.data">
-						<a ng-href="#{{menu.name}}/{{submenu.name}}">{{submenu.title}}</a>
-					</li>
-				</ul>
+		<li ng-repeat="(index,menu) in reports" ng-class="{active:isActive('{{index}}')}">
+				<a ng-href="#reports/{{index}}">{{menu.title}}</a>
 		</li>
 	</ul>
 </div>

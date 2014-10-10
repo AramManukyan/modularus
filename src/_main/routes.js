@@ -4,18 +4,18 @@ exampleApp.main
 	
 	$routeProvider
 	
-	.when('/', {
+	.when('/reports', {
 		templateUrl: 'templates/reports/reports.html',
 		controller: 'ReportsCtrl'
 	})
 
-	.when('/reports/:reportName', {
+	.when('/reports/:reportId', {
 		templateUrl: 'templates/reports/reports.html',
 		controller: 'ReportsCtrl'
 	})
 
 	.otherwise({
-		redirectTo: '/'
+		redirectTo: '/reports'
 	});
 	
 });

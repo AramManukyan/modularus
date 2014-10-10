@@ -1,11 +1,14 @@
 exampleApp.header
 
-.controller("HeaderCtrl", function($scope, $log, $location) {
+.controller("HeaderCtrl", function($scope, $log, $routeParams) {
 
 	$scope.navbarCollapsed = true;
 	
 	$scope.isActive = function(route) {
-        return route === $location.path();
+		if(typeof $routeParams.reportId === "undefined"){
+        	$routeParams.reportId = "0";
+        }
+        return route === $routeParams.reportId;
     }
 
 });
