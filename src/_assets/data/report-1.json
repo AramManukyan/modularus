@@ -1322,7 +1322,7 @@
             {
                "type": "chart-pie",
                "title": "Gas prices piechart",
-               "width": 6,
+               "width": 4,
                "data": [
                   {
                      "label": "One",
@@ -1355,6 +1355,49 @@
                   {
                      "label": "Eight",
                      "value": 5.1387324
+                  }
+               ]
+            },
+            {
+               "type": "chart-bar",
+               "title": "Gas prices barchart",
+               "width": 8,
+               "data": [
+                  {
+                     "values": [
+                        {
+                           "label": "One",
+                           "value": 29.765957
+                        },
+                        {
+                           "label": "Two",
+                           "value": 0
+                        },
+                        {
+                           "label": "Three",
+                           "value": 32.807804
+                        },
+                        {
+                           "label": "Four",
+                           "value": 196.45947
+                        },
+                        {
+                           "label": "Five",
+                           "value": 0.1943403
+                        },
+                        {
+                           "label": "Six",
+                           "value": 98.07978
+                        },
+                        {
+                           "label": "Seven",
+                           "value": 13.925743
+                        },
+                        {
+                           "label": "Eight",
+                           "value": 5.1387324
+                        }
+                     ]
                   }
                ]
             }
