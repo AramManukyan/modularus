@@ -26,7 +26,7 @@ exampleApp.reports
 	};
 
 
-	// Raws sorting function, which is used in orderBy filter
+	// Rows sorting function, which is used in orderBy filter
 	$scope.rowSortFunction = function(row) {
 
 		var orderValue = row[$scope.orderByIndex];
@@ -39,6 +39,11 @@ exampleApp.reports
 			return row[$scope.orderByIndex];
 		}
 	};
+
+	/*
+	*	Search stuff
+	*/
+	$scope.search = {};
 
 	/*
 	*	Pagination stuff

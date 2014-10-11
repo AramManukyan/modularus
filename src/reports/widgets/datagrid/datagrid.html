@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="row in data.rows | orderBy:rowSortFunction:orderReverse">
+            <tr ng-repeat="row in data.rows | orderBy:rowSortFunction:orderReverse | filter:search">
 
                 <td ng-repeat="(index, item) in row">
                     {{item | datagridItem:data.fields[index].type}}
@@ -23,8 +23,11 @@
         </tbody>
         <tfoot>
             <tr>
-                <td ng-repeat="item in data.fields">
-                    <input class="form-control" type="text" placeholder="filter by: {{item.title}}" >
+                <td ng-repeat="(index, item) in data.fields">
+                    <input class="form-control" type="text" 
+                            placeholder="filter by: {{item.title}}" 
+                            ng-model="search[index]"
+                    >
                 </td>
             </tr>
         </tfoot>
