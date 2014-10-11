@@ -11,7 +11,18 @@ exampleApp.reports
 
 	// Set ordering column index
 	$scope.orderBy = function(index) {
-		$scope.orderByIndex = index;
+
+		// If is clcked to new field, we should set order index
+		// and set order ASC
+		if($scope.orderByIndex != index) {
+			$scope.orderByIndex = index;
+			$scope.orderReverse = false;
+		}
+		// Just toggle order ASC/DESC
+		else {
+			$scope.orderReverse = !$scope.orderReverse;
+		}
+
 	};
 
 

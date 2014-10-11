@@ -3,10 +3,12 @@
         <thead>
             <tr>
                 <th ng-repeat="(index, item) in data.fields">
-                    <span ng-click="orderBy(index)">
+                    <a href="" class="order" ng-click="orderBy(index)">
                         {{item.title}}
-                        <i class="fa fa-sort"></i>
-                    </span>
+                        <i class="fa fa-sort" ng-show="orderByIndex != index"></i>
+                        <i class="fa fa-sort-down"  ng-show="orderByIndex == index && !orderReverse"></i>
+                        <i class="fa fa-sort-up" ng-show="orderByIndex == index && orderReverse"></i>
+                    </a>
                 </th>
             </tr>
         </thead>
