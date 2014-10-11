@@ -15,4 +15,15 @@ exampleApp.reports
 	};
 })
 
+
+.filter('datagridPaginate', function($log, $filter) {
+	return function(rows, activePage, itemsPerPage) {
+
+		// $log.log(rows);
+
+		return rows.slice((activePage - 1) * itemsPerPage, activePage * itemsPerPage);
+
+	};
+})
+
 ;
