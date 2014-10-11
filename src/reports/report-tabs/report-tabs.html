@@ -22,7 +22,10 @@
 
 		<div class="tab-pane" ng-class="{active:isActiveTab(index)}" ng-repeat="(index, reportItem) in report.data">
 
-			<ng-include src="'templates/reports/report-single/report-single.html'"></ng-include>
+			<!-- Generate DOM only when the tab is active -->
+			<div ng-if="isActiveTab(index)">
+				<ng-include src="'templates/reports/report-single/report-single.html'"></ng-include>
+			</div>
 
 		</div>
 

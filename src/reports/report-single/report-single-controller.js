@@ -1,6 +1,6 @@
 exampleApp.reports
 
-.controller("ReportSingleCtrl", function($scope) {
+.controller("ReportSingleCtrl", function($scope, $log) {
 
 	if(!angular.isDefined($scope.report) || !$scope.report.data.length) {
 		return false;
