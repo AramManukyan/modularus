@@ -8,7 +8,7 @@ exampleApp.reports
 		controller: "DatagridCtrl",
 		link: function(scope, element) {
 
-			$log.log("in datagrid directive", scope);
+			// $log.log("in datagrid directive", scope);
 
 		},
 		scope: {

@@ -67,7 +67,7 @@ exampleApp.reports
 		$scope.itemsCount = $filter('filter')($scope.data.rows, $scope.search).length;
 		$scope.numPages = Math.ceil($scope.itemsCount / $scope.itemsPerPage);
 
-		$log.log("Items count:", $scope.itemsCount);
+		// $log.log("Items count:", $scope.itemsCount);
 
 		$scope.pages = [];
 

@@ -5,7 +5,7 @@ exampleApp.reports
 	var link = function(scope, element) {
 		var data = scope.data;
 
-		$log.log("In chart line", data);
+		// $log.log("In chart line", data);
 
 
 		nv.addGraph(function() {

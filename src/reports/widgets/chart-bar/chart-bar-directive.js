@@ -5,7 +5,7 @@ exampleApp.widgets
 	var link = function(scope,element){
 
 		var data = scope.data;
-		$log.log("In chart bar", data);
+		// $log.log("In chart bar", data);
 
 		nv.addGraph(function() {
 			var chart = nv.models.discreteBarChart()

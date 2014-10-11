@@ -7,7 +7,7 @@ exampleApp.reports
 		templateUrl: 'templates/reports/widgets/datalist/datalist.html',
 		link: function(scope, element) {
 
-			$log.log("in datalist directive", scope);
+			// $log.log("in datalist directive", scope);
 
 		},
 		scope: {

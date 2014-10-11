@@ -1,26 +1,42 @@
 exampleApp.main
 
-.directive('dropdownsInit', function($log) {
+.directive('dropdownsInit', function($log, $document) {
 
 
   function link(scope, $element) {
 
-    var $dropdowns = $element.find(".dropdown");
-    var $dropdownLists = $dropdowns.find("> ul");
-    
-    $dropdowns.find(".dropdown-toggle").click(function() {
+    var $dropdowns = null,
+        $dropdownLists = null;
 
-      $dropdowns.not($(this).parent()).filter(".open").removeClass("open");
-      $(this).parent().toggleClass("open");
+    $(document).on("click", function(e) {
 
-      return false;
+      var $dropdownToggle = $(e.target).closest(".dropdown-toggle");
+
+      if(!$dropdownToggle.length) {
+        return false;
+      }
+
+      $dropdowns = $element.find(".dropdown");
+      $dropdownLists = $dropdowns.find("> ul");
+
+      $dropdowns.not($dropdownToggle.parent()).filter(".open").removeClass("open");
+      $dropdownToggle.parent().toggleClass("open");
 
     });
+    
+    // $dropdowns.find(".dropdown-toggle").click(function() {
+
+    //   $dropdowns.not($(this).parent()).filter(".open").removeClass("open");
+    //   $(this).parent().toggleClass("open");
+
+    //   return false;
+
+    // });
 
     $(document).on("click", function(event) {
 
 
-      if(!$(event.target).hasClass("dropdown-toggle")) {
+      if(!$(event.target).hasClass("dropdown-toggle") && $dropdowns) {
 
         $dropdowns.filter(".open").removeClass("open");
 

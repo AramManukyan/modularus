@@ -6,7 +6,7 @@ exampleApp.reports
 
 		var data = scope.data;
 
-		$log.log("In chart pie", data);
+		// $log.log("In chart pie", data);
 
 		nv.addGraph(function() {
 			var chart = nv.models.pieChart()
