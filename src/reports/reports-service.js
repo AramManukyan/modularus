@@ -16,19 +16,24 @@ exampleApp.reports
 
 	}
 
-	function getReportById(id,data){
-		for(var i = 0; i < data.length; i++) {
-			if(data[i].id === id) {
-				return data[i];
-			}
-		}
+	function getReportById(id,callback){
+		$http.get('/assets/data/' + id + '.json').success(function(data){
+
+			callback(data);
+				
+		}).error(function(){
+
+			$log.log('Error');
+			callback([]);
+
+		});
 	}
 
 	return {
-		get:function(callback){
+		getReportsConfig:function(callback){
 			getReports(callback);
 		},
-		getById:function(id,data){
+		getReportById:function(id,data){
 			return getReportById(id,data);
 		}
 	}

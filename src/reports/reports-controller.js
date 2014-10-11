@@ -1,22 +1,15 @@
 exampleApp.reports
 
-.controller("ReportsCtrl", function($scope, $log, ReportsService,$routeParams) {
+.controller("ReportsCtrl", function($scope, $log, $routeParams, ReportsService) {
 
-	$scope.reports = [];
 	$scope.activeTab = 0;
-	
-	if(typeof $routeParams.reportId === "undefined"){
-		$routeParams.reportId = "report-1";
-	}
+	$scope.activeReport = $routeParams.reportId;
 
-	ReportsService.get(function(data){
+	ReportsService.getReportById($routeParams.reportId,function(data){
 
-		$scope.reports = data.reports;
-		
-		$scope.report = ReportsService.getById($routeParams.reportId,data.reports);
+		$scope.report = data;
+
 	});
-
-
 
 	$scope.isActiveTab = function(index){
 		return index === $scope.activeTab;

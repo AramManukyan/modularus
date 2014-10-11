@@ -8,7 +8,7 @@
   <div class="tab-pane" ng-class="{active:isActiveTab(index)}" ng-repeat="(index,panel) in report.data">
   		<div class="row">
 	  		<div class="{{'col-lg-'+widget.width}}" ng-repeat="widget in panel.widgets">
-	  			<ng-include src="'templates/reports/widgets/widget-' + widget.type + '/widget-'+ widget.type +'.html'"></ng-include>
+	  			<ng-include src="'templates/reports/widgets/' + widget.type + '/'+ widget.type +'.html'"></ng-include>
 	  		<div>
   		</div>
   </div>

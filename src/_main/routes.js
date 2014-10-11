@@ -14,11 +14,6 @@ exampleApp.main
 		controller: 'ReportsCtrl'
 	})
 
-	.when('/reports/:reportId/:subreportId', {
-		templateUrl: 'templates/reports/reports.html',
-		controller: 'ReportsCtrl'
-	})
-
 	.otherwise({
 		redirectTo: '/reports'
 	});

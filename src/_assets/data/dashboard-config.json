@@ -3,72 +3,12 @@
         {
             "id": "report-1",
             "name": "prices",
-            "title": "Prices",
-            "data": [
-                {
-                    "id": "report-2",
-                    "name": "gas",
-                    "title": "Gas report tab title",
-                    "widgets": [
-                        {
-                            "type": "datagrid",
-                            "title": "Some Table Widget",
-                            "width": 12
-                        },
-                        {
-                            "type": "plain",
-                            "title": "Some Plain Type Widget",
-                            "width": 6
-                        },
-                        {
-                            "type": "linechart",
-                            "title": "Some Linechart",
-                            "width": 6
-                        }
-                    ]
-                },
-                {
-                    "id": "report-3",
-                    "name": "taxes",
-                    "title": "Taxes report tab title",
-                    "widgets": [
-                        {
-                            "type": "sometype",
-                            "title": "Some Tipe Widget",
-                            "width": 12
-                        }
-                    ]
-                }
-            ]
+            "title": "Prices"
         },
         {
-            "id": "report-4",
+            "id": "report-2",
             "name": "income",
-            "title": "Income",
-            "data": [
-                {
-                    "id": "report-5",
-                    "name": "it",
-                    "title": "It",
-                    "widgets": [
-                        {
-                            "type": "datagrid",
-                            "title": "Some Table Widget",
-                            "width": 12
-                        },
-                        {
-                            "type": "plain",
-                            "title": "Some Plain Type Widget",
-                            "width": 6
-                        },
-                        {
-                            "type": "linechart",
-                            "title": "Some Linechart",
-                            "width": 6
-                        }
-                    ]
-                }
-            ]
+            "title": "Income"
         }
     ]
 }
