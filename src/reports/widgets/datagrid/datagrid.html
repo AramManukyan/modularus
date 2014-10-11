@@ -1,18 +1,39 @@
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="datagrid">
+    <table class="table table-bordered table-hover table-striped datagrid-table">
+        <thead>
+            <tr>
+                <th ng-repeat="item in data.fields">
+                    <span>
+                        {{item.title}}
+                        <i class="fa fa-sort"></i>
+                    </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in data.rows">
 
-    </tbody>
-    <tfoot>
+                <td ng-repeat="item in row">
+                    {{item}}
+                </td>
 
-    </tfoot>
-</table>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td ng-repeat="item in data.fields">
+                    <input class="form-control" type="text" placeholder="filter by: {{item.title}}" >
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <ul class="pagination">
+        <li class="disabled">
+            <a href="#">&laquo;</a>
+        </li>
+        <li class="active">
+            <a href="#">1 <span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
+</div>
