@@ -2,8 +2,8 @@
     <table class="table table-bordered table-hover table-striped datagrid-table">
         <thead>
             <tr>
-                <th ng-repeat="item in data.fields">
-                    <span>
+                <th ng-repeat="(index, item) in data.fields">
+                    <span ng-click="orderBy(index)">
                         {{item.title}}
                         <i class="fa fa-sort"></i>
                     </span>
@@ -11,10 +11,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="row in data.rows">
+            <tr ng-repeat="row in data.rows | orderBy:rowSortFunction:orderReverse">
 
-                <td ng-repeat="item in row">
-                    {{item}}
+                <td ng-repeat="(index, item) in row">
+                    {{item | datagridItem:data.fields[index].type}}
                 </td>
 
             </tr>
