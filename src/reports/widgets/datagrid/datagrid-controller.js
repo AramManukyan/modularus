@@ -1,6 +1,6 @@
 exampleApp.reports
 
-.controller('DatagridCtrl', function($scope, $log) {
+.controller('DatagridCtrl', function($scope, $log, $filter) {
 
 	// By default order by first column
 	$scope.orderByIndex = 0;
@@ -49,8 +49,32 @@ exampleApp.reports
 	*	Pagination stuff
 	*/
 
-	$scope.activePage = 0;
-	$scope.itemsPerPage = 5;
+	setPagination();
+
+
+	$scope.setPage = function(pageNumber) {
+		$scope.activePage = pageNumber;
+	};
+
+	$scope.$watch("search", function() {
+		setPagination();
+	}, true);
+
+	// Init pagination
+	function setPagination() {
+		$scope.activePage = 1;
+		$scope.itemsPerPage = 5;
+		$scope.itemsCount = $filter('filter')($scope.data.rows, $scope.search).length;
+		$scope.numPages = Math.ceil($scope.itemsCount / $scope.itemsPerPage);
+
+		$log.log("Items count:", $scope.itemsCount);
+
+		$scope.pages = [];
+
+		for(var i = 1; i <= $scope.numPages; i++) {
+			$scope.pages.push(i);
+		}
+	}
 
 
 })

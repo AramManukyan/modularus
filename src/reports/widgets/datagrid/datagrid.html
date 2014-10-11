@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="row in data.rows | orderBy:rowSortFunction:orderReverse | filter:search">
+            <tr ng-repeat="row in data.rows | orderBy:rowSortFunction:orderReverse | filter:search  | datagridPaginate:activePage:itemsPerPage">
 
                 <td ng-repeat="(index, item) in row">
                     {{item | datagridItem:data.fields[index].type}}
@@ -33,12 +33,11 @@
         </tfoot>
     </table>
 
-    <ul class="pagination">
-        <li class="disabled">
-            <a href="#">&laquo;</a>
-        </li>
-        <li class="active">
-            <a href="#">1 <span class="sr-only">(current)</span></a>
+    <ul class="pagination" ng-show="pages.length > 1">
+        <li ng-class="{active: activePage == page }" ng-repeat="page in pages">
+            <a ng-click="setPage(page)">
+                {{page}}
+            </a>
         </li>
     </ul>
 </div>
