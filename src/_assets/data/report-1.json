@@ -8,9 +8,84 @@
 			"title": "Gas prices",
 			"widgets": [
 				{
+					"type": "datalist",
+					"title": "Datalist 1 of report 1",
+					"width": 4,
+					"data": [
+						{
+							"label": "A label",
+							"value": "A value"
+						},
+						{
+							"label": "B label",
+							"value": "B value"
+						},
+						{
+							"label": "C label",
+							"value": "C value"
+						},
+						{
+							"label": "D label",
+							"value": "D value"
+						}
+					]
+				},
+
+				{
+					"type": "datalist",
+					"title": "Datalist 2 of report 1",
+					"width": 4,
+					"data": [
+						{
+							"label": "A label",
+							"value": "A value"
+						},
+						{
+							"label": "B label",
+							"value": "B value"
+						},
+						{
+							"label": "C label",
+							"value": "C value"
+						},
+						{
+							"label": "D label",
+							"value": "D value"
+						}
+					]
+				},
+
+				{
+					"type": "datalist",
+					"title": "Datalist 2 of report 1",
+					"width": 4,
+					"data": [
+						{
+							"label": "A label",
+							"value": "A value"
+						},
+						{
+							"label": "B label",
+							"value": "B value"
+						},
+						{
+							"label": "C label",
+							"value": "C value"
+						},
+						{
+							"label": "D label",
+							"value": "D value"
+						}
+					]
+				},
+
+				{
 					"type": "datagrid",
 					"title": "Gas prices datagrid",
-					"width": 12
+					"width": 12,
+					"data": {
+
+					}
 				},
 				{
 					"type": "plain",

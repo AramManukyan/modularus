@@ -3,8 +3,36 @@
 	<div class="row">
 		<div class="{{'col-lg-'+widget.width}}" ng-repeat="widget in reportItem.widgets">
 
-			<ng-include src="'templates/reports/widgets/' + widget.type + '/'+ widget.type +'.html'"></ng-include>
-			
+			<div class="panel panel-default">
+			    <div class="panel-heading">
+			        <h3 class="panel-title">{{widget.title}}</h3>
+			    </div>
+			    <div class="panel-body">
+
+					<!-- Different widget directives Switch-->
+					<div ng-switch="widget.type">
+
+						<!-- Datalist widget -->
+						<div ng-switch-when="datalist">
+							<div datalist widget="widget"></div>
+						</div>
+
+						<!-- Datagrid widget -->
+						<div ng-switch-when="datagrid">
+							<div datagrid widget="widget"></div>
+						</div>
+
+						<!-- Linechart widget -->
+
+						<!-- Piechart widget -->
+
+					</div>
+					<!-- End of Different widget directives Switch-->
+
+
+				</div>
+			</div>
+
 		<div>
 	</div>
 

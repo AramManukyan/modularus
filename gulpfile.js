@@ -117,7 +117,8 @@ var lessOptions = {
 	gulp.task('assets_app', function() {
 
 		gulp.src(paths.assets)
-			.pipe(gulp.dest(config.build_dir + '/assets'));
+			.pipe(gulp.dest(config.build_dir + '/assets'))
+			.pipe(connect.reload());
 
 	});
 
@@ -204,6 +205,10 @@ var lessOptions = {
 		// When styles changes compile them
 		gulp.watch(paths.styles.css.src, ['styles_app']);
 		gulp.watch(paths.styles.less.src, ['styles_app']);
+
+		// When assets changes run assets again
+		gulp.watch(paths.assets, ['assets_app']);
+		
 
 	});
 
