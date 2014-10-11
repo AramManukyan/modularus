@@ -1,14 +1,14 @@
 {
-    "reports": [
-        {
-            "id": "report-1",
-            "name": "prices",
-            "title": "Prices"
-        },
-        {
-            "id": "report-2",
-            "name": "income",
-            "title": "Income"
-        }
-    ]
+	"reports": [
+		{
+			"id": "report-1",
+			"name": "prices",
+			"title": "Prices"
+		},
+		{
+			"id": "report-2",
+			"name": "income",
+			"title": "Income"
+		}
+	]
 }

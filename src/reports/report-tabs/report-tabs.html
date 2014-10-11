@@ -1,9 +1,13 @@
 <div ng-controller="ReportTabsCtrl as reportTabs">
 
 	<!-- Nav tabs -->
-	<ul class="nav nav-tabs  right-to-left" role="tablist">
+	<ul class="nav nav-tabs right-to-left" role="tablist">
 
-	  	<li ng-class="{active:isActiveTab(index)}" ng-repeat="(index,tabs) in report.data" ng-click="setTab(index)">
+	  	<li class="pull-right"
+	  			ng-class="{active:isActiveTab(index)}" 
+	  			ng-repeat="(index, tabs) in report.data" 
+	  			ng-click="setTab(index)" 
+	  	>
 
 	  		<a role="tab" data-toggle="tab">
 	  			{{tabs.title}}

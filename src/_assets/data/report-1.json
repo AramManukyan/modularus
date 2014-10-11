@@ -3,20 +3,20 @@
 	"name": "prices",
 	"title": "Prices",
 	"data":[
-			{
+		{
 			"name": "gas",
-			"title": "Gas report tab title",
+			"title": "Gas prices",
 			"widgets": [
-			    {
-			        "type": "datagrid",
-			        "title": "Some Table Widget",
-			        "width": 12
-			    },
-			    {
-			        "type": "plain",
-			        "title": "Some Plain Type Widget",
-			        "width": 6,
-			        "data":[ 
+				{
+					"type": "datagrid",
+					"title": "Gas prices datagrid",
+					"width": 12
+				},
+				{
+					"type": "plain",
+					"title": "Some Plain Type Widget",
+					"width": 6,
+					"data":[ 
 							{
 							"key"   : "Cumulative Return",
 							"values": [
@@ -55,59 +55,59 @@
 							]
 							}
 						]
-			    },
-			    {
-			        "type": "linechart",
-			        "title": "Some Linechart",
-			        "width": 6,
-			        "data":[
-						      { 
-						        "label": "One",
-						        "value" : 29.765957771107
-						      } , 
-						      { 
-						        "label": "Two",
-						        "value" : 0
-						      } , 
-						      { 
-						        "label": "Three",
-						        "value" : 32.807804682612
-						      } , 
-						      { 
-						        "label": "Four",
-						        "value" : 196.45946739256
-						      } , 
-						      { 
-						        "label": "Five",
-						        "value" : 0.19434030906893
-						      } , 
-						      { 
-						        "label": "Six",
-						        "value" : 98.079782601442
-						      } , 
-						      { 
-						        "label": "Seven",
-						        "value" : 13.925743130903
-						      } , 
-						      { 
-						        "label": "Eight",
-						        "value" : 5.1387322875705
-						      }
-						    ]
-			    }
+				},
+				{
+					"type": "linechart",
+					"title": "Gas prices linechart",
+					"width": 6,
+					"data":[
+							  { 
+								"label": "One",
+								"value" : 29.765957771107
+							  } , 
+							  { 
+								"label": "Two",
+								"value" : 0
+							  } , 
+							  { 
+								"label": "Three",
+								"value" : 32.807804682612
+							  } , 
+							  { 
+								"label": "Four",
+								"value" : 196.45946739256
+							  } , 
+							  { 
+								"label": "Five",
+								"value" : 0.19434030906893
+							  } , 
+							  { 
+								"label": "Six",
+								"value" : 98.079782601442
+							  } , 
+							  { 
+								"label": "Seven",
+								"value" : 13.925743130903
+							  } , 
+							  { 
+								"label": "Eight",
+								"value" : 5.1387322875705
+							  }
+							]
+				}
 			]
-			},
-			{
-				"name": "taxes",
-				"title": "Taxes report tab title",
-				"widgets": [
-				    {
-				        "type": "sometype",
-				        "title": "Some Tipe Widget",
-				        "width": 12
-	                }
-            	]
-			}
+		},
+		{
+			"name": "taxes",
+			"title": "Some other stuff prices",
+			"widgets": [
+				{
+					"type": "sometype",
+					"title": "Some type widget",
+					"width": 12
+				}
+			]
+		}
 	]
 }
 

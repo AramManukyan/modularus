@@ -1,7 +1,11 @@
-<div class="row">
-	<div class="{{'col-lg-'+widget.width}}" ng-repeat="widget in reportItem.widgets">
+<div ng-controller="ReportSingleCtrl as reportSingle">
 
-		<ng-include src="'templates/reports/widgets/' + widget.type + '/'+ widget.type +'.html'"></ng-include>
-		
-	<div>
+	<div class="row">
+		<div class="{{'col-lg-'+widget.width}}" ng-repeat="widget in reportItem.widgets">
+
+			<ng-include src="'templates/reports/widgets/' + widget.type + '/'+ widget.type +'.html'"></ng-include>
+			
+		<div>
+	</div>
+
 </div>

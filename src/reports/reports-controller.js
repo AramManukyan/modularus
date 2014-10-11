@@ -26,26 +26,6 @@ exampleApp.reports
 
 	ReportsService.getReportById($scope.activeReport, function(data){
 		$scope.report = data;
-
-		$log.log("Report loaded:", $scope.report);
 	});
-
-
-	$scope.getReportTemplate = function() {
-
-		var reportTemplate = null;
-
-		if($scope.report.length === 1) {
-			reportTemplate = "templates/reports/report-single/report-single.html";
-		}
-		else if($scope.report.length > 1) {
-			reportTemplate = "templates/reports/report-tabs/report-tabs.html";
-		}
-
-		$log.log("Report template:", reportTemplate);
-
-		return reportTemplate;
-
-	};
 
 });
