@@ -43,7 +43,6 @@ exampleApp.reports
 
 	return{
 		restrict:'EA',
-		// controller:'LinechartCtrl',
 		link: link,
 		scope:{
 			data: "=data"
