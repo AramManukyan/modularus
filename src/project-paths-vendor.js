@@ -1,9 +1,12 @@
 module.exports = {
 
-	// scripts: {
-	// 	// All scripts automatically grabbed from mainBoweFiles
-	// 	"auto": "*"
-	// },
+	scripts: [
+		"jquery.js",
+		"angular.js",
+		"angular-route.js",
+		"d3.js",
+		"nv.d3.js"
+	],
 	// styles: [
 	// 	""
 	// ],

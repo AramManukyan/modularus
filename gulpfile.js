@@ -58,10 +58,11 @@ var lessOptions = {
 	gulp.task('scripts_vendor', function() {
 
 		// console.log(mainBowerFiles());
+		//['*.js']
 
 		gulp.src(mainBowerFiles())
-		.pipe( filter(['*.js']) )
-		// .pipe( uglify() )
+		.pipe( filter(paths_vendor.scripts) )
+		//.pipe( uglify() )
 		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest(config.build_dir + '/js'));
 	});
@@ -103,9 +104,6 @@ var lessOptions = {
 
 			var src = config.bower_dir + paths_vendor.assets[i].src;
 			var dest = config.build_dir + paths_vendor.assets[i].dest;
-
-			console.log(src);
-			console.log(dest);
 
 			gulp.src(src)
 				.pipe(gulp.dest(dest));
