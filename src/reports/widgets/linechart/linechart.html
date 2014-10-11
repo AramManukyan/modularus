@@ -3,8 +3,12 @@
         <h3 class="panel-title">{{widget.title}}</h3>
     </div>
     <div class="panel-body">
-    	<div id="linechart">
-        	<line-chart linechhart-data="{{widget.data}}"></line-chart>
-        </div>
+    	<div class="row">
+    		<div class="col-lg-6" id="linechart1">
+    			
+    		</div>
+    		<div class="col-lg-6" id="linechart2"></div>
+    		<line-chart linechhart-data="{{widget.data}}"></line-chart>
+    	</div>
     </div>
 </div>
