@@ -14,15 +14,19 @@
 
 						<!-- Datalist widget -->
 						<div ng-switch-when="datalist">
-							<div datalist widget="widget"></div>
+							<div datalist data="widget.data"></div>
 						</div>
 
 						<!-- Datagrid widget -->
 						<div ng-switch-when="datagrid">
-							<div datagrid widget="widget"></div>
+							<div datagrid data="widget.data"></div>
 						</div>
 
 						<!-- Linechart widget -->
+						<div ng-switch-when="chart-line">
+							<div chart-line data="widget.data"></div>
+						</div>
+
 
 						<!-- Piechart widget -->
 

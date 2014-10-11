@@ -11,7 +11,7 @@ exampleApp.reports
 
 		},
 		scope: {
-			widget: '=widget'
+			data: '=data'
 		}
 	}
 
