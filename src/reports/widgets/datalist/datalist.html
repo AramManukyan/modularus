@@ -4,7 +4,9 @@
   		{{item.label}}
   	</dt>
   	<dd ng-repeat-end>
-  		{{item.value}}
+  		<span class="label label-{{item.type}}">
+  			{{item.value}}
+  		</span>
   	</dd>
   	
 </dl>
