@@ -9,70 +9,82 @@
          "widgets": [
             {
                "type": "datalist",
-               "title": "Gas prices datalist 1",
+               "title": "Physical Memory Usage",
                "width": 4,
                "data": [
                   {
-                     "label": "A label",
-                     "value": "A value"
+                     "label": "Router-name:",
+                     "value": "demo-str",
+                     "type": "primary"
                   },
                   {
-                     "label": "B label",
-                     "value": "B value"
+                     "label": "Version:",
+                     "value": "sdv_4.26.23.58",
+                     "type": "warning"
                   },
                   {
-                     "label": "C label",
-                     "value": "C value"
+                     "label": "System type:",
+                     "value": "topic-routing",
+                     "type": "default"
                   },
                   {
-                     "label": "D label",
-                     "value": "D value"
+                     "label": "Classic Product N.:",
+                     "value": "CDF-326ASD-08-A",
+                     "type": "success"
                   }
                ]
             },
             {
                "type": "datalist",
-               "title": "Gas prices datalist 1",
+               "title": "Spool File Utilization",
                "width": 4,
                "data": [
                   {
-                     "label": "A label",
-                     "value": "A value"
+                     "label": "System Up Time:",
+                     "value": "14d 06h 21m",
+                     "type": "info"
                   },
                   {
-                     "label": "B label",
-                     "value": "B value"
+                     "label": "Max Backups:",
+                     "value": "25",
+                     "type": "warning"
                   },
                   {
-                     "label": "C label",
-                     "value": "C value"
+                     "label": "Backup Status Changed:",
+                     "value": "true",
+                     "type": "default"
                   },
                   {
-                     "label": "D label",
-                     "value": "D value"
+                     "label": "Previous Backup:",
+                     "value": "2014-08-09 20:32:01",
+                     "type": "primary"
                   }
                ]
             },
             {
                "type": "datalist",
-               "title": "Gas prices datalist 1",
+               "title": "Total Messages Spooled",
                "width": 4,
                "data": [
                   {
-                     "label": "A label",
-                     "value": "A value"
+                     "label": "Router Time:",
+                     "value": "2014-10-11 14:20:32",
+                     "type": "default"
                   },
                   {
-                     "label": "B label",
-                     "value": "B value"
+                     "label": "CPU 1:",
+                     "value": "Intel(R)Core(TM)2Quad",
+                     "type": "primary"
                   },
                   {
-                     "label": "C label",
-                     "value": "C value"
+                     "label": "CPU 2:",
+                     "value": "Intel(R)Core(TM)2Quad",
+                     "type": "primary"
                   },
                   {
-                     "label": "D label",
-                     "value": "D value"
+                     "label": "Platform:",
+                     "value": "Solace 3230",
+                     "type": "info"
                   }
                ]
             },
@@ -1304,6 +1316,45 @@
                      "key": "Another sine wave",
                      "color": "#7777ff",
                      "area": true
+                  }
+               ]
+            },
+            {
+               "type": "chart-pie",
+               "title": "Gas prices piechart",
+               "width": 6,
+               "data": [
+                  {
+                     "label": "One",
+                     "value": 29.765957
+                  },
+                  {
+                     "label": "Two",
+                     "value": 0
+                  },
+                  {
+                     "label": "Three",
+                     "value": 32.807804
+                  },
+                  {
+                     "label": "Four",
+                     "value": 196.45947
+                  },
+                  {
+                     "label": "Five",
+                     "value": 0.1943403
+                  },
+                  {
+                     "label": "Six",
+                     "value": 98.07978
+                  },
+                  {
+                     "label": "Seven",
+                     "value": 13.925743
+                  },
+                  {
+                     "label": "Eight",
+                     "value": 5.1387324
                   }
                ]
             }
