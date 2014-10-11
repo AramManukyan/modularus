@@ -1,24 +1,15 @@
 exampleApp.main
 
-.controller("MainCtrl", function($scope,$log, $routeParams, $location, ReportsService) {
+.controller("MainCtrl", function($scope, $log, $route, $routeParams, $location, ReportsService) {
 
+	$scope.reports = [];
+
+	// Getting reports configuration, so we can
+	// set sidebar links, and get report ids
 	ReportsService.getReportsConfig(function(data){
-
 		$scope.reports = data.reports;
-
-		if(!angular.isDefined($routeParams.reportId)) {
-			
-			$scope.activeReport = $scope.reports[0].id;
-			$location.path('/reports/' + $scope.reports[0].id);
-
-		} 
-		else {
-
-			$scope.activeReport = $routeParams.reportId;
-			
-		}
+		$route.reload();
 	});
-
 
 })
 

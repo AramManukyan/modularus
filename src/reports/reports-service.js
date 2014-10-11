@@ -1,8 +1,9 @@
 exampleApp.reports
 
-.factory("ReportsService", function($http,$log) {
+.factory("ReportsService", function($http, $log, $timeout) {
 
-	function getReports(callback){
+	function getReportsConfig(callback){
+
 		$http.get('/assets/data/dashboard-config.json').success(function(data){
 
 			callback(data);
@@ -16,7 +17,8 @@ exampleApp.reports
 
 	}
 
-	function getReportById(id,callback){
+	function getReportById(id, callback){
+
 		$http.get('/assets/data/' + id + '.json').success(function(data){
 
 			callback(data);
@@ -27,14 +29,29 @@ exampleApp.reports
 			callback([]);
 
 		});
+
 	}
 
 	return {
-		getReportsConfig:function(callback){
-			getReports(callback);
+		getReportsConfig: function(callback) {
+
+			// Imitating async request with delay
+			$timeout(function() {
+
+				getReportsConfig(callback);
+				
+			}, 300);
+
 		},
-		getReportById:function(id,data){
-			return getReportById(id,data);
+		getReportById: function(id, callback) {
+
+			// Imitating async request with delay
+			$timeout(function() {
+
+				getReportById(id, callback);
+
+			},300);
+			
 		}
 	}
 });

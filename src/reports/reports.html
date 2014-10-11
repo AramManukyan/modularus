@@ -3,11 +3,18 @@
 <div id="page-wrapper">
 
 	<div class="container-fluid">
+	
 		<!-- Breadcrumbs -->
-		<ng-include src="'templates/_common/breadcrumbs/breadcrumbs.html'"></ng-include>
-		
-		<!-- Some example layout -->
-		<ng-include src="'templates/reports/reports-tabs.html'"></ng-include>
+		<!-- <ng-include src="'templates/_common/breadcrumbs/breadcrumbs.html'"></ng-include> -->
+		<!-- <ng-include src="getReportTemplate()"></ng-include> -->
+
+		<div ng-if="report.data.length > 1">
+			<ng-include src="'templates/reports/report-tabs/report-tabs.html'"></ng-include>
+		</div>
+
+		<div ng-if="report.data.length == 1">
+			<ng-include src="'templates/reports/report-single/report-single.html'"></ng-include>
+		</div>
 
 	</div>
 	<!-- /.container-fluid -->
