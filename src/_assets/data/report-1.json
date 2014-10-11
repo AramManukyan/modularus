@@ -9,7 +9,7 @@
 			"widgets": [
 				{
 					"type": "datalist",
-					"title": "Datalist 1 of report 1",
+					"title": "Gas prices datalist 1",
 					"width": 4,
 					"data": [
 						{
@@ -33,7 +33,7 @@
 
 				{
 					"type": "datalist",
-					"title": "Datalist 2 of report 1",
+					"title": "Gas prices datalist 1",
 					"width": 4,
 					"data": [
 						{
@@ -57,7 +57,7 @@
 
 				{
 					"type": "datalist",
-					"title": "Datalist 2 of report 1",
+					"title": "Gas prices datalist 1",
 					"width": 4,
 					"data": [
 						{
@@ -82,10 +82,7 @@
 				{
 					"type": "datagrid",
 					"title": "Gas prices datagrid",
-					"width": 12,
-					"data": {
-
-					}
+					"width": 12
 				},
 				{
 					"type": "plain",
