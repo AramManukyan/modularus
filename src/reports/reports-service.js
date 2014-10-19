@@ -4,7 +4,7 @@ exampleApp.reports
 
 	function getReportsConfig(callback){
 
-		$http.get('/assets/data/dashboard-config.json').success(function(data){
+		$http.get('assets/data/dashboard-config.json').success(function(data){
 
 			callback(data);
 				
@@ -19,7 +19,7 @@ exampleApp.reports
 
 	function getReportById(id, callback){
 
-		$http.get('/assets/data/' + id + '.json').success(function(data){
+		$http.get('assets/data/' + id + '.json').success(function(data){
 
 			callback(data);
 				
@@ -40,7 +40,7 @@ exampleApp.reports
 
 				getReportsConfig(callback);
 				
-			}, 300);
+			});
 
 		},
 		getReportById: function(id, callback) {
@@ -50,7 +50,7 @@ exampleApp.reports
 
 				getReportById(id, callback);
 
-			},300);
+			});
 			
 		}
 	}
