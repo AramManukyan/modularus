@@ -1,0 +1,19 @@
+{
+	"reports": [
+		{
+			"id": "report-1",
+			"name": "prices",
+			"title": "Prices"
+		},
+		{
+			"id": "report-2",
+			"name": "income",
+			"title": "Income"
+		},
+		{
+			"id": "report-3",
+			"name": "datagrid",
+			"title": "Datagrid"
+		}
+	]
+}

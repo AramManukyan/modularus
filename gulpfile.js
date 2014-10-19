@@ -5,6 +5,13 @@
 	var config = require("./tasks/config");
 	var paths = require("./tasks/paths.js");
 
+/************************************************************
+*						Project Configs
+************************************************************/
+
+	var config_vendor = require("./src/project-config");
+	var paths_vendor = require("./src/project-paths-vendor");
+
 
 /************************************************************
 *					Gulp Modules
@@ -20,7 +27,15 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	fileinclude = require('gulp-file-include'),
 	filter = require('gulp-filter'),
-	mainBowerFiles = require('main-bower-files');
+	mainBowerFiles = require('main-bower-files'),
+	less = require("gulp-less");
+
+var lessOptions = {
+	paths: [ 
+		config.src_dir,
+		config.bower_dir,
+	]
+};
 
 /************************************************************
 *						Scripts
@@ -42,11 +57,12 @@ var gulp = require('gulp'),
 	// // Copies and concatenates vendor scripts to build dir
 	gulp.task('scripts_vendor', function() {
 
-		console.log(mainBowerFiles());
+		// console.log(mainBowerFiles());
+		//['*.js']
 
 		gulp.src(mainBowerFiles())
-		.pipe( filter(['*.js']) )
-		.pipe( uglify() )
+		.pipe( filter(paths_vendor.scripts) )
+		//.pipe( uglify() )
 		.pipe(concat('vendor.js'))
 		.pipe(gulp.dest(config.build_dir + '/js'));
 	});
@@ -60,16 +76,6 @@ var gulp = require('gulp'),
 
 	gulp.task('styles_app', function() {
 
-
-		var less = require("gulp-less");
-
-		var lessOptions = {
-			paths: [ 
-				config.src_dir + "/app",
-				config.bower_dir,
-			]
-		};
-
 		gulp.src(paths.styles.less.main)
 			.pipe(less(lessOptions).on('error', gutil.log))
 			.pipe(gulp.dest(config.build_dir + '/css'))
@@ -79,10 +85,9 @@ var gulp = require('gulp'),
 
 	gulp.task('styles_vendor', function() {
 
-		gulp.src(mainBowerFiles())
-		.pipe(filter(['*.css']))
-		.pipe(concat('vendor.css'))
-		.pipe(gulp.dest(config.build_dir + '/css'));
+		gulp.src(config.src_dir + '/_vendor/vendor.less')
+			.pipe(less(lessOptions).on('error', gutil.log))
+			.pipe(gulp.dest(config.build_dir + '/css'));
 
 	});
 
@@ -94,16 +99,24 @@ var gulp = require('gulp'),
 
 	gulp.task('assets_vendor', function() {
 
-		gulp.src(mainBowerFiles())
-		.pipe(filter(['/**/*', '!*.js']))
-		.pipe(gulp.dest(config.build_dir + '/assets'));
+
+		for(var i in paths_vendor.assets) {
+
+			var src = config.bower_dir + paths_vendor.assets[i].src;
+			var dest = config.build_dir + paths_vendor.assets[i].dest;
+
+			gulp.src(src)
+				.pipe(gulp.dest(dest));
+
+		}
 
 	});
 
 	gulp.task('assets_app', function() {
 
 		gulp.src(paths.assets)
-			.pipe(gulp.dest(config.build_dir + '/assets'));
+			.pipe(gulp.dest(config.build_dir + '/assets'))
+			.pipe(connect.reload());
 
 	});
 
@@ -190,6 +203,10 @@ var gulp = require('gulp'),
 		// When styles changes compile them
 		gulp.watch(paths.styles.css.src, ['styles_app']);
 		gulp.watch(paths.styles.less.src, ['styles_app']);
+
+		// When assets changes run assets again
+		gulp.watch(paths.assets, ['assets_app']);
+		
 
 	});
 
