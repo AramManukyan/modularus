@@ -1,0 +1,43 @@
+<div class="datagrid">
+    <table class="table table-bordered table-hover table-striped datagrid-table">
+        <thead>
+            <tr>
+                <th ng-repeat="(index, item) in data.fields">
+                    <a href="" class="order" ng-click="orderBy(index)">
+                        {{item.title}}
+                        <i class="fa fa-sort" ng-show="orderByIndex != index"></i>
+                        <i class="fa fa-sort-down"  ng-show="orderByIndex == index && !orderReverse"></i>
+                        <i class="fa fa-sort-up" ng-show="orderByIndex == index && orderReverse"></i>
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in data.rows | orderBy:rowSortFunction:orderReverse | filter:search  | datagridPaginate:activePage:itemsPerPage">
+
+                <td ng-repeat="(index, item) in row">
+                    {{item | datagridItem:data.fields[index].type}}
+                </td>
+
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td ng-repeat="(index, item) in data.fields">
+                    <input class="form-control" type="text" 
+                            placeholder="filter by: {{item.title}}" 
+                            ng-model="search[index]"
+                    >
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <ul class="pagination" ng-show="pages.length > 1">
+        <li ng-class="{active: activePage == page }" ng-repeat="page in pages">
+            <a ng-click="setPage(page)">
+                {{page}}
+            </a>
+        </li>
+    </ul>
+</div>

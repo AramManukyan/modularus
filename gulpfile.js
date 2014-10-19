@@ -3,14 +3,18 @@
 ************************************************************/
 
 	var config = require("./tasks/config");
-	var paths = require("./tasks/paths.js");
+	var paths = {};
+
+	paths.app = require("./src/paths-app");
+	paths.vendor = require("./src/paths-vendor");
+
 
 /************************************************************
 *						Project Configs
 ************************************************************/
 
-	var config_vendor = require("./src/project-config");
-	var paths_vendor = require("./src/project-paths-vendor");
+	// var config_vendor = require("./src/project-config");
+	// var paths_vendor = require("./src/project-paths");
 
 
 /************************************************************
@@ -19,6 +23,7 @@
 
 // Common modules
 var gulp = require('gulp'),
+	gulpif = require('gulp-if'),
 	gutil = require('gulp-util'),
 	connect = require('gulp-connect'),
 	concat = require('gulp-concat'),
@@ -47,24 +52,39 @@ var lessOptions = {
 	// // Copies app scripts to build dir
 	gulp.task('scripts_app', function() {
 
-		gulp.src(paths.scripts.js.src)
-			.pipe(concat('app.js'))
-			.pipe(gulp.dest(config.build_dir + '/js'))
-			.pipe(connect.reload());	
+		for(var i in paths.app.scripts) {
+
+			var item = paths.app.scripts[i];
+
+
+			gulp.src(item.src)
+				.pipe( 
+					gulpif(typeof item.concat !== "undefined", 
+					concat(item.concat)) 
+				)
+				.pipe(gulp.dest(item.dest))
+				.pipe(connect.reload());
+
+		}
 
 	});
 
 	// // Copies and concatenates vendor scripts to build dir
 	gulp.task('scripts_vendor', function() {
 
-		// console.log(mainBowerFiles());
-		//['*.js']
+		for(var i in paths.vendor.scripts) {
 
-		gulp.src(mainBowerFiles())
-		.pipe( filter(paths_vendor.scripts) )
-		//.pipe( uglify() )
-		.pipe(concat('vendor.js'))
-		.pipe(gulp.dest(config.build_dir + '/js'));
+			var item = paths.vendor.scripts[i];
+
+			gulp.src(item.src)
+				.pipe( 
+					gulpif(typeof item.concat !== "undefined", 
+					concat(item.concat)) 
+				)
+				.pipe(gulp.dest(item.dest));
+
+		}
+
 	});
 
 
@@ -221,10 +241,10 @@ var lessOptions = {
 	gulp.task('build', [
 		// 'jsHint', 
 		'scripts', 
-		'styles', 
-		'assets',
-		'layouts',
-		'templates'
+		// 'styles', 
+		// 'assets',
+		// 'layouts',
+		// 'templates'
 	]);
 
 	// // Run this task for development

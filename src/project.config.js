@@ -1,7 +1,7 @@
 module.exports = {
 
 	/*
-	*	For running framework specific tasks
+	*	For framework specific tasks
 	*	For example ng-templates for Angular,
 	*	or angular-specific minification
 	*
