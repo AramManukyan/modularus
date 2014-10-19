@@ -8,14 +8,15 @@ module.exports = {
 				config.src_dir + "/_main/main.js",
 				config.src_dir + "/**/!(main.js)*.js"
 			],
-			concat: "app.js",
-			dest: config.build_dir + "/js"
+			dest: config.build_dir + "/js",
+			concat: "app.js"
 		}
 	],
 	styles: [
 		{
 			src: config.src_dir + "/_main/main.less",
-			dest: config.build_dir + "/css/main.css"
+			dest: config.build_dir + "/css/",
+			processor: "less"
 		}
 	],
 	layouts: [

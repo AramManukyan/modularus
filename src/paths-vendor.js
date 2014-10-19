@@ -23,7 +23,8 @@ module.exports = {
 				config.bower_dir + "/bootstrap/dist/css/bootstrap-theme.css",
 				config.bower_dir + "/font-awesome/css/font-awesome.css"
 			],
-			dest: "vendor.css"
+			concat: "vendor.css",
+			dest: config.build_dir + "/css"
 		}
 	],
 

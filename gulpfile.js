@@ -59,8 +59,10 @@ var lessOptions = {
 
 			gulp.src(item.src)
 				.pipe( 
-					gulpif(typeof item.concat !== "undefined", 
-					concat(item.concat)) 
+					gulpif(
+						typeof item.concat !== "undefined", 
+						concat(item.concat)
+					)
 				)
 				.pipe(gulp.dest(item.dest))
 				.pipe(connect.reload());
@@ -78,8 +80,10 @@ var lessOptions = {
 
 			gulp.src(item.src)
 				.pipe( 
-					gulpif(typeof item.concat !== "undefined", 
-					concat(item.concat)) 
+					gulpif(
+						typeof item.concat !== "undefined", 
+						concat(item.concat)
+					) 
 				)
 				.pipe(gulp.dest(item.dest));
 
@@ -96,18 +100,52 @@ var lessOptions = {
 
 	gulp.task('styles_app', function() {
 
-		gulp.src(paths.styles.less.main)
-			.pipe(less(lessOptions).on('error', gutil.log))
-			.pipe(gulp.dest(config.build_dir + '/css'))
-			.pipe(connect.reload());
+		for(var i in paths.app.styles) {
+
+			var item = paths.app.styles[i];
+
+			gulp.src(item.src)
+				.pipe(
+					gulpif(
+						typeof item.processor !== "undefined" && item.processor == "less", 
+						less(lessOptions).on('error', gutil.log)
+					)
+				)
+				// .pipe( 
+				// 	gulpif(
+				// 		typeof item.concat !== "undefined", 
+				// 		concat(item.concat)
+				// 	) 
+				// )
+				.pipe(gulp.dest(item.dest))
+				.pipe(connect.reload());
+
+		}
 
 	});
 
 	gulp.task('styles_vendor', function() {
 
-		gulp.src(config.src_dir + '/_vendor/vendor.less')
-			.pipe(less(lessOptions).on('error', gutil.log))
-			.pipe(gulp.dest(config.build_dir + '/css'));
+		for(var i in paths.vendor.styles) {
+
+			var item = paths.vendor.styles[i];
+
+			gulp.src(item.src)
+				.pipe(
+					gulpif(
+						typeof item.processor !== "undefined" && item.processor == "less", 
+						less(lessOptions).on('error', gutil.log)
+					)
+				)
+				.pipe( 
+					gulpif(
+						typeof item.concat !== "undefined", 
+						concat(item.concat)
+					) 
+				)
+				.pipe(gulp.dest(item.dest));
+
+		}
 
 	});
 
@@ -241,7 +279,7 @@ var lessOptions = {
 	gulp.task('build', [
 		// 'jsHint', 
 		'scripts', 
-		// 'styles', 
+		'styles', 
 		// 'assets',
 		// 'layouts',
 		// 'templates'
