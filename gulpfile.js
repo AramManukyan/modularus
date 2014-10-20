@@ -1,5 +1,5 @@
 /************************************************************
-*					Environmental Configs
+*						Project Configs
 ************************************************************/
 
 	var config = require("./tasks/config");
@@ -10,20 +10,13 @@
 
 
 /************************************************************
-*						Project Configs
-************************************************************/
-
-	// var config_vendor = require("./src/project-config");
-	// var paths_vendor = require("./src/project-paths");
-
-
-/************************************************************
 *					Gulp Modules
 ************************************************************/
 
 // Common modules
 var gulp = require('gulp'),
 	gulpif = require('gulp-if'),
+	gulpIgnore = require('gulp-ignore'),
 	gutil = require('gulp-util'),
 	connect = require('gulp-connect'),
 	concat = require('gulp-concat'),
@@ -56,12 +49,18 @@ var lessOptions = {
 
 			var item = paths.app.scripts[i];
 
+			item.src.push("!" + config.src_dir +"/paths-app.js");
+			item.src.push("!" + config.src_dir +"/paths-vendor.js");
+			item.src.push("!" + config.src_dir +"/project-config.js");
+
+			// console.log(item.src);
+
 
 			gulp.src(item.src)
 				.pipe( 
 					gulpif(
 						typeof item.concat !== "undefined", 
-						concat(item.concat)
+						concat(item.concat || "app.js")
 					)
 				)
 				.pipe(gulp.dest(item.dest))
@@ -82,7 +81,7 @@ var lessOptions = {
 				.pipe( 
 					gulpif(
 						typeof item.concat !== "undefined", 
-						concat(item.concat)
+						concat(item.concat || "vendor.js")
 					) 
 				)
 				.pipe(gulp.dest(item.dest));
@@ -111,12 +110,12 @@ var lessOptions = {
 						less(lessOptions).on('error', gutil.log)
 					)
 				)
-				// .pipe( 
-				// 	gulpif(
-				// 		typeof item.concat !== "undefined", 
-				// 		concat(item.concat)
-				// 	) 
-				// )
+				.pipe( 
+					gulpif(
+						typeof item.concat !== "undefined", 
+						concat(item.concat || "app.css").on('error', gutil.log)
+					) 
+				)
 				.pipe(gulp.dest(item.dest))
 				.pipe(connect.reload());
 
@@ -140,7 +139,7 @@ var lessOptions = {
 				.pipe( 
 					gulpif(
 						typeof item.concat !== "undefined", 
-						concat(item.concat)
+						concat(item.concat || "vendor.css")
 					) 
 				)
 				.pipe(gulp.dest(item.dest));
@@ -158,13 +157,12 @@ var lessOptions = {
 	gulp.task('assets_vendor', function() {
 
 
-		for(var i in paths_vendor.assets) {
+		for(var i in paths.vendor.assets) {
 
-			var src = config.bower_dir + paths_vendor.assets[i].src;
-			var dest = config.build_dir + paths_vendor.assets[i].dest;
+			var item = paths.vendor.assets[i];
 
-			gulp.src(src)
-				.pipe(gulp.dest(dest));
+			gulp.src(item.src)
+				.pipe(gulp.dest(item.dest));
 
 		}
 
@@ -172,9 +170,18 @@ var lessOptions = {
 
 	gulp.task('assets_app', function() {
 
-		gulp.src(paths.assets)
-			.pipe(gulp.dest(config.build_dir + '/assets'))
-			.pipe(connect.reload());
+		for(var i in paths.app.assets) {
+
+			var item = paths.app.assets[i];
+
+			// console.log(item);
+
+			gulp.src(item.src)
+				.pipe(gulp.dest(item.dest))
+				.pipe(connect.reload());
+
+		}
+
 
 	});
 
@@ -185,18 +192,23 @@ var lessOptions = {
 
 	gulp.task('layouts', function() {
 
+		for(var i in paths.app.layouts) {
 
-		gulp.src(paths.layouts.html.src)
-			.pipe(fileinclude({
-				prefix: '@@',
-				basepath: '@root'
-			}))
-			.pipe(flatten())
-			.pipe(rename(function (path) {
-				path.basename = path.basename.replace(".layout", "");
-			}))
-	  		.pipe(gulp.dest(config.build_dir))
-	  		.pipe(connect.reload());
+			var item = paths.app.layouts[i];
+
+			gulp.src(item.src)
+				.pipe(fileinclude({
+					prefix: '@@',
+					basepath: '@root'
+				}))
+				.pipe(flatten())
+				.pipe(rename(function (path) {
+					path.basename = path.basename.replace(".layout", "");
+				}))
+		  		.pipe(gulp.dest(item.dest))
+		  		.pipe(connect.reload());
+
+		}	
 		  	
 	  
 	});
@@ -207,10 +219,15 @@ var lessOptions = {
 	
 	gulp.task('templates', function() {
 
-		gulp.src(paths.templates.html.src)
-			// .pipe(flatten())
-	  		.pipe(gulp.dest(config.build_dir + "/templates"))
-	  		.pipe(connect.reload());
+		for(var i in paths.app.templates) {
+
+			var item = paths.app.templates[i];
+
+			gulp.src(item.src)
+		  		.pipe(gulp.dest(item.dest))
+		  		.pipe(connect.reload());
+
+	  	}
 	  
 	});
 
@@ -243,27 +260,31 @@ var lessOptions = {
 	// Rerun the task when a file changes
 	gulp.task('watch', function() {
 
+
 		// When application script file changes, handle app scripts
-		gulp.watch(paths.scripts.js.src, ['scripts_app']);
-		gulp.watch(paths.scripts.coffee.src, ['scripts_app']);
+		for(var i in paths.app.scripts) {
+			gulp.watch(paths.app.scripts[i].src, ['scripts_app']);
+		}
 
+		// // When styles changes compile them
+		for(var i in paths.app.styles) {
+			gulp.watch(paths.app.styles[i].src, ['styles_app']);
+		}
 
-		// When layout changes, process layouts 
-		gulp.watch(paths.layouts.html.src, ['layouts']);
-		gulp.watch(paths.layouts.jade.src, ['layouts']);
-		gulp.watch(paths.layouts.ejs.src, ['layouts']);
+		// // When layout changes, process layouts 
+		for(var i in paths.app.layouts) {
+			gulp.watch(paths.app.layouts[i].src, ['layouts_app']);
+		}
 
-		// When tamplate changes, process templates 
-		gulp.watch(paths.templates.html.src, ['templates']);
-		gulp.watch(paths.templates.jade.src, ['templates']);
-		gulp.watch(paths.templates.ejs.src, ['templates']);
+		// // When tamplate changes, process templates 
+		for(var i in paths.app.templates) {
+			gulp.watch(paths.app.templates[i].src, ['templates_app']);
+		}
 
-		// When styles changes compile them
-		gulp.watch(paths.styles.css.src, ['styles_app']);
-		gulp.watch(paths.styles.less.src, ['styles_app']);
-
-		// When assets changes run assets again
-		gulp.watch(paths.assets, ['assets_app']);
+		// // When assets changes run assets again
+		for(var i in paths.app.assets) {
+				gulp.watch(paths.app.assets[i].src, ['assets_app']);
+		}
 		
 
 	});
@@ -277,12 +298,11 @@ var lessOptions = {
 	// Run "gulp build --production" for production build 
 	// with minified styles and scripts
 	gulp.task('build', [
-		// 'jsHint', 
 		'scripts', 
 		'styles', 
-		// 'assets',
-		// 'layouts',
-		// 'templates'
+		'assets',
+		'layouts',
+		'templates'
 	]);
 
 	// // Run this task for development
