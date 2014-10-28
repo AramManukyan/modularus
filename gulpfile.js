@@ -1,24 +1,25 @@
 /************************************************************
-*					Environmental Configs
-************************************************************/
-
-	var config = require("./tasks/config");
-	var paths = require("./tasks/paths.js");
-
-/************************************************************
 *						Project Configs
 ************************************************************/
 
-	var config_vendor = require("./src/project-config");
-	var paths_vendor = require("./src/project-paths-vendor");
+	var config = require("./tasks/config");
+	var paths = {};
+
+	paths.app = require("./src/paths-app");
+	paths.vendor = require("./src/paths-vendor");
 
 
 /************************************************************
 *					Gulp Modules
 ************************************************************/
 
+var Combine = require('stream-combiner');
+
 // Common modules
 var gulp = require('gulp'),
+	gulpif = require('gulp-if'),
+	lazypipe = require('lazypipe'),
+	gulpIgnore = require('gulp-ignore'),
 	gutil = require('gulp-util'),
 	connect = require('gulp-connect'),
 	concat = require('gulp-concat'),
@@ -28,7 +29,21 @@ var gulp = require('gulp'),
 	fileinclude = require('gulp-file-include'),
 	filter = require('gulp-filter'),
 	mainBowerFiles = require('main-bower-files'),
-	less = require("gulp-less");
+	less = require("gulp-less"),
+	jshint = require('gulp-jshint');
+
+// Defining tasks in object to be able to refer them by their name later
+var fileTasks = {
+	concat: concat,
+	rename: rename,
+	flatten: flatten,
+	uglify: uglify,
+	fileinclude: fileinclude,
+	filter: filter,
+	mainBowerFiles: mainBowerFiles,
+	less: less,
+	jshint: jshint
+};
 
 var lessOptions = {
 	paths: [ 
@@ -37,6 +52,8 @@ var lessOptions = {
 	]
 };
 
+
+
 /************************************************************
 *						Scripts
 ************************************************************/
@@ -44,27 +61,31 @@ var lessOptions = {
 	// // Handles application and vendor scripts
 	gulp.task('scripts', ['scripts_app', 'scripts_vendor']);
 
-	// // Copies app scripts to build dir
+	// Process application scripts
 	gulp.task('scripts_app', function() {
 
-		gulp.src(paths.scripts.js.src)
-			.pipe(concat('app.js'))
-			.pipe(gulp.dest(config.build_dir + '/js'))
-			.pipe(connect.reload());	
+		for(var i in paths.app.scripts) {
+
+			processFileBunch({
+				bunch: paths.app.scripts[i],
+				reload: true
+			});
+
+		}
 
 	});
 
-	// // Copies and concatenates vendor scripts to build dir
+	// Process vendor scripts
 	gulp.task('scripts_vendor', function() {
 
-		// console.log(mainBowerFiles());
-		//['*.js']
+		for(var i in paths.vendor.scripts) {
 
-		gulp.src(mainBowerFiles())
-		.pipe( filter(paths_vendor.scripts) )
-		//.pipe( uglify() )
-		.pipe(concat('vendor.js'))
-		.pipe(gulp.dest(config.build_dir + '/js'));
+			processFileBunch({
+				bunch: paths.vendor.scripts[i]
+			});
+
+		}
+
 	});
 
 
@@ -74,20 +95,28 @@ var lessOptions = {
 	
 	gulp.task('styles', ['styles_app', 'styles_vendor']);
 
+	// Process application styles
 	gulp.task('styles_app', function() {
 
-		gulp.src(paths.styles.less.main)
-			.pipe(less(lessOptions).on('error', gutil.log))
-			.pipe(gulp.dest(config.build_dir + '/css'))
-			.pipe(connect.reload());
+		for(var i in paths.app.styles) {
 
+			processFileBunch({
+				bunch: paths.app.styles[i]
+			});
+
+		}
 	});
 
+	// Process vendor styles
 	gulp.task('styles_vendor', function() {
 
-		gulp.src(config.src_dir + '/_vendor/vendor.less')
-			.pipe(less(lessOptions).on('error', gutil.log))
-			.pipe(gulp.dest(config.build_dir + '/css'));
+		for(var i in paths.vendor.styles) {
+
+			processFileBunch({
+				bunch: paths.vendor.styles[i]
+			});
+
+		}
 
 	});
 
@@ -97,26 +126,29 @@ var lessOptions = {
 	
 	gulp.task('assets', ['assets_app', 'assets_vendor']);
 
+	// Process vendor assets
 	gulp.task('assets_vendor', function() {
 
 
-		for(var i in paths_vendor.assets) {
-
-			var src = config.bower_dir + paths_vendor.assets[i].src;
-			var dest = config.build_dir + paths_vendor.assets[i].dest;
-
-			gulp.src(src)
-				.pipe(gulp.dest(dest));
-
+		for(var i in paths.vendor.assets) {
+			processFileBunch({
+				bunch: paths.vendor.assets[i]
+			});
 		}
 
 	});
 
+	// Process application assets
 	gulp.task('assets_app', function() {
 
-		gulp.src(paths.assets)
-			.pipe(gulp.dest(config.build_dir + '/assets'))
-			.pipe(connect.reload());
+		for(var i in paths.app.assets) {
+
+			processFileBunch({
+				bunch: paths.app.assets[i],
+				reload: true
+			});
+
+		}
 
 	});
 
@@ -124,49 +156,38 @@ var lessOptions = {
 /************************************************************
 *						Layouts
 ************************************************************/
-
+	
+	// Process apllication layouts
 	gulp.task('layouts', function() {
 
+		for(var i in paths.app.layouts) {
 
-		gulp.src(paths.layouts.html.src)
-			.pipe(fileinclude({
-				prefix: '@@',
-				basepath: '@root'
-			}))
-			.pipe(flatten())
-			.pipe(rename(function (path) {
-				path.basename = path.basename.replace(".layout", "");
-			}))
-	  		.pipe(gulp.dest(config.build_dir))
-	  		.pipe(connect.reload());
+			processFileBunch({
+				bunch: paths.app.layouts[i],
+				reload: true
+			});
+
+		}
 		  	
-	  
 	});
 
 /************************************************************
 *						Templates
 ************************************************************/
-	
+
+	// Process application templates
 	gulp.task('templates', function() {
 
-		gulp.src(paths.templates.html.src)
-			// .pipe(flatten())
-	  		.pipe(gulp.dest(config.build_dir + "/templates"))
-	  		.pipe(connect.reload());
+		for(var i in paths.app.templates) {
+
+			processFileBunch({
+				bunch: paths.app.templates[i],
+				reload: true
+			});
+
+	  	}
 	  
 	});
-
-/************************************************************
-*						Linting
-************************************************************/
-
-	// gulp.task('jsHint', function() {
-
-	// 	gulp.src(paths.scripts_app)
-	// 		.pipe(jshint())
-	// 		.pipe(jshint.reporter('default'));
-			
-	// });
 
 /************************************************************
 *						Other
@@ -185,30 +206,85 @@ var lessOptions = {
 	// Rerun the task when a file changes
 	gulp.task('watch', function() {
 
-		// When application script file changes, handle app scripts
-		gulp.watch(paths.scripts.js.src, ['scripts_app']);
-		gulp.watch(paths.scripts.coffee.src, ['scripts_app']);
+		// When application script file changes, process application scripts
+		for(var i in paths.app.scripts) {
+			gulp.watch(paths.app.scripts[i].src, ['scripts_app']);
+		}
 
+		// When application style changes, process application styles
+		for(var i in paths.app.styles) {
+			gulp.watch(paths.app.styles[i].src, ['styles_app']);
+		}
 
-		// When layout changes, process layouts 
-		gulp.watch(paths.layouts.html.src, ['layouts']);
-		gulp.watch(paths.layouts.jade.src, ['layouts']);
-		gulp.watch(paths.layouts.ejs.src, ['layouts']);
+		// When application layout changes, process application layouts
+		for(var i in paths.app.layouts) {
+			gulp.watch(paths.app.layouts[i].src, ['layouts']);
+		}
 
-		// When tamplate changes, process templates 
-		gulp.watch(paths.templates.html.src, ['templates']);
-		gulp.watch(paths.templates.jade.src, ['templates']);
-		gulp.watch(paths.templates.ejs.src, ['templates']);
+		// When application template changes, process application templates
+		for(var i in paths.app.templates) {
+			gulp.watch(paths.app.templates[i].src, ['templates']);
+		}
 
-		// When styles changes compile them
-		gulp.watch(paths.styles.css.src, ['styles_app']);
-		gulp.watch(paths.styles.less.src, ['styles_app']);
-
-		// When assets changes run assets again
-		gulp.watch(paths.assets, ['assets_app']);
+		// When application asset changes, process application assets
+		for(var i in paths.app.assets) {
+			gulp.watch(paths.app.assets[i].src, ['assets_app']);
+		}
 		
-
 	});
+
+
+
+/************************************************************
+*					
+*************************************************************/
+
+
+function processFileBunch (options) {
+
+
+	var bunch =  options.bunch;
+	var livereload = options.reload || false;
+
+
+	// If item.src is array
+	// Always ignore this files
+	if(Array.isArray(bunch.src)) {
+		bunch.src.push("!" + config.src_dir +"/paths-app.js");
+		bunch.src.push("!" + config.src_dir +"/paths-vendor.js");	
+	}
+
+	var streams = [];
+
+	if(typeof bunch.tasks !== "undefined") {
+		bunch.tasks.map(function(task) {
+			if(typeof fileTasks[task.name] !== "undefined") {
+				streams.push(fileTasks[task.name](task.options || {}))
+			}
+			else {
+				console.log("Task \"" + task.name + "\" is not defined...");
+			}			
+		});
+	}
+
+	// Assuming is always dest...
+	streams.push(gulp.dest(bunch.dest));
+
+	// If we should livereload
+	if(livereload) {
+		streams.push(connect.reload());
+	}
+
+
+	// Generate stream
+	var generatedStream = Combine(streams);
+	
+	gulp.src(bunch.src)
+		.pipe(generatedStream);
+		// .pipe(gulp.dest(item.dest));
+		// .pipe(connect.reload());
+
+}
 
 
 /************************************************************
@@ -219,12 +295,11 @@ var lessOptions = {
 	// Run "gulp build --production" for production build 
 	// with minified styles and scripts
 	gulp.task('build', [
-		// 'jsHint', 
 		'scripts', 
 		'styles', 
-		'assets',
 		'layouts',
-		'templates'
+		'templates',
+		'assets'
 	]);
 
 	// // Run this task for development
