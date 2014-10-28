@@ -7,7 +7,9 @@ sbAdmin.main = angular.module("exampleApp", [
 	
 	// Application modules
 	"sbAdmin.common",
-	"sbAdmin.dashboard"
+	"sbAdmin.dashboard",
+	"sbAdmin.tables",
+	"sbAdmin.forms",
 	// "exampleApp.reports",
 	// "exampleApp.widgets",
 ]);
@@ -17,6 +19,12 @@ sbAdmin.common = angular.module("sbAdmin.common", []);
 
 // Dashboard module
 sbAdmin.dashboard = angular.module("sbAdmin.dashboard", []);
+
+// Tables module
+sbAdmin.tables = angular.module("sbAdmin.tables", []);
+
+// Forms module
+sbAdmin.forms = angular.module("sbAdmin.forms", []);
 
 
 // Reports module

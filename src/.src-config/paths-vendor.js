@@ -9,6 +9,7 @@ exports.scripts = [
 	{
 		src: [
 			config.bower_dir + "/jquery/dist/jquery.js",
+			config.bower_dir + "/bootstrap/dist/js/bootstrap.js",
 			config.bower_dir + "/d3/d3.js",
 			config.bower_dir + "/nvd3/nv.d3.js",
 			config.bower_dir + "/angular/angular.js",

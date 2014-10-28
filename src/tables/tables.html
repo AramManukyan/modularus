@@ -1,0 +1,65 @@
+<ng-include src="'templates/_common/navigation/navigation.html'"></ng-include>
+
+<div id="page-wrapper">
+
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">
+					Tables
+				</h1>
+
+				<!-- Breadcrumbs -->
+				<!-- <ng-include src="'templates/_common/breadcrumbs/breadcrumbs.html'"></ng-include> -->
+				<ol class="breadcrumb">
+				    <li>
+				        <i class="fa fa-dashboard"></i>  <a href="i#/dashboard">Dashboard</a>
+				    </li>
+				    <li class="active">
+				        <i class="fa fa-table"></i> Tables
+				    </li>
+				</ol>
+
+			</div>
+		</div>
+
+
+		<div class="row">
+
+			<!-- Bordered table -->
+			<ng-include src="'templates/tables/bordered-table/bordered-table.html'"></ng-include>
+
+			<!-- Bordered with Striped Rows table -->
+			<ng-include src="'templates/tables/bordered-with-striped-rows-table/bordered-with-striped-rows-table.html'"></ng-include>			
+
+		</div>
+
+
+		<div class="row">
+		
+			<!-- Basic table -->
+			<ng-include src="'templates/tables/basic-table/basic-table.html'"></ng-include>
+
+			<!-- Striped Rows table -->
+			<ng-include src="'templates/tables/striped-rows-table/striped-rows-table.html'"></ng-include>			
+
+		</div>
+
+
+		<div class="row">
+		
+			<!-- Contextual Classes table -->
+			<ng-include src="'templates/tables/contextual-classes-table/contextual-classes-table.html'"></ng-include>
+
+			<!-- Bootstrap Docs -->
+			<div class="col-lg-6">
+			    <h2>Bootstrap Docs</h2>
+			    <p>For complete documentation, please visit <a target="_blank" href="http://getbootstrap.com/css/#tables">Bootstrap's Tables Documentation</a>.</p>
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

@@ -1,0 +1,71 @@
+<ng-include src="'templates/_common/navigation/navigation.html'"></ng-include>
+
+<div id="page-wrapper">
+
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">
+					Forms
+				</h1>
+
+				<!-- Breadcrumbs -->
+				<!-- <ng-include src="'templates/_common/breadcrumbs/breadcrumbs.html'"></ng-include> -->
+				<ol class="breadcrumb">
+				    <li>
+				        <i class="fa fa-dashboard"></i>  <a href="#dashboard">Dashboard</a>
+				    </li>
+				    <li class="active">
+				        <i class="fa fa-edit"></i> Forms
+				    </li>
+				</ol>
+
+			</div>
+		</div>
+
+
+		<div class="row">
+
+            <div class="col-lg-6">
+
+            	<form role="form" method="GET" action="">
+
+	            	<!-- Inputs -->
+	            	<ng-include src="'templates/forms/inputs/inputs.html'"></ng-include>
+
+	            	<!-- Checkboxes -->
+	            	<ng-include src="'templates/forms/checkboxes/checkboxes.html'"></ng-include>
+
+	            	<!-- Radio Buttons -->
+	            	<ng-include src="'templates/forms/radio-buttons/radio-buttons.html'"></ng-include>
+
+	            	<!-- Selects -->
+	            	<ng-include src="'templates/forms/selects/selects.html'"></ng-include>
+
+            	</form>
+
+            </div>
+
+            <div class="col-lg-6">
+
+	            	<!-- Disabled Forms -->
+	            	<ng-include src="'templates/forms/disable-forms/disable-forms.html'"></ng-include>
+
+	            	<!-- Form Validations -->
+	            	<ng-include src="'templates/forms/form-validation/form-validation.html'"></ng-include>
+
+	            	<!-- Input Groups -->
+	            	<ng-include src="'templates/forms/input-groups/input-groups.html'"></ng-include>
+
+	            	<!-- Bootstrap Docs -->
+	            	<p>For complete documentation, please visit <a href="http://getbootstrap.com/css/#forms">Bootstrap's Form Documentation</a>.</p>
+            	
+            </div>
+
+		</div>            
+
+	</div>
+	<!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
