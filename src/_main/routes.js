@@ -17,6 +17,10 @@ sbAdmin.main
 		templateUrl: 'templates/forms/forms.html',
 		controller: 'FormsCtrl'
 	})
+	.when('/bootstrap-elements', {
+		templateUrl: 'templates/bootstrap-elements/bootstrap-elements.html',
+		controller: 'BootstrapElementsCtrl'
+	})
 
 	.otherwise({
 		redirectTo: '/dashboard'

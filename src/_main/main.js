@@ -10,6 +10,7 @@ sbAdmin.main = angular.module("exampleApp", [
 	"sbAdmin.dashboard",
 	"sbAdmin.tables",
 	"sbAdmin.forms",
+	"sbAdmin.bootstrapElements",
 	// "exampleApp.reports",
 	// "exampleApp.widgets",
 ]);
@@ -25,6 +26,9 @@ sbAdmin.tables = angular.module("sbAdmin.tables", []);
 
 // Forms module
 sbAdmin.forms = angular.module("sbAdmin.forms", []);
+
+// Bootstrap Elements module
+sbAdmin.bootstrapElements = angular.module("sbAdmin.bootstrapElements", []);
 
 
 // Reports module
