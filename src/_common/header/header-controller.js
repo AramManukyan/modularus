@@ -2,7 +2,7 @@ sbAdmin.common
 
 .controller("HeaderCtrl", HeaderCtrl);
 
-function HeaderCtrl () {
+function HeaderCtrl ($location,$log) {
 
 	var header = this;
 
@@ -11,5 +11,9 @@ function HeaderCtrl () {
 	header.setCollapsed = function(data){
 		header.navbarCollapsed = data;
 	}
+
+	header.isActive = function(route) {
+        return route === $location.path();
+    }
 
 }
