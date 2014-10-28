@@ -65,7 +65,12 @@ var lessOptions = {
 	gulp.task('scripts_app', function() {
 
 		for(var i in paths.app.scripts) {
-			processPaths(paths.app.scripts[i]);
+
+			processFileBunch({
+				bunch: paths.app.scripts[i],
+				reload: true
+			});
+
 		}
 
 	});
@@ -74,7 +79,11 @@ var lessOptions = {
 	gulp.task('scripts_vendor', function() {
 
 		for(var i in paths.vendor.scripts) {
-			processPaths(paths.vendor.scripts[i]);
+
+			processFileBunch({
+				bunch: paths.vendor.scripts[i]
+			});
+
 		}
 
 	});
@@ -90,7 +99,11 @@ var lessOptions = {
 	gulp.task('styles_app', function() {
 
 		for(var i in paths.app.styles) {
-			processPaths(paths.app.styles[i]);
+
+			processFileBunch({
+				bunch: paths.app.styles[i]
+			});
+
 		}
 	});
 
@@ -98,7 +111,11 @@ var lessOptions = {
 	gulp.task('styles_vendor', function() {
 
 		for(var i in paths.vendor.styles) {
-			processPaths(paths.vendor.styles[i]);
+
+			processFileBunch({
+				bunch: paths.vendor.styles[i]
+			});
+
 		}
 
 	});
@@ -114,15 +131,23 @@ var lessOptions = {
 
 
 		for(var i in paths.vendor.assets) {
-			processPaths(paths.vendor.assets[i]);
+			processFileBunch({
+				bunch: paths.vendor.assets[i]
+			});
 		}
 
 	});
 
+	// Process application assets
 	gulp.task('assets_app', function() {
 
 		for(var i in paths.app.assets) {
-			processPaths(paths.app.assets[i]);
+
+			processFileBunch({
+				bunch: paths.app.assets[i],
+				reload: true
+			});
+
 		}
 
 	});
@@ -136,7 +161,12 @@ var lessOptions = {
 	gulp.task('layouts', function() {
 
 		for(var i in paths.app.layouts) {
-			processPaths(paths.app.layouts[i]);
+
+			processFileBunch({
+				bunch: paths.app.layouts[i],
+				reload: true
+			});
+
 		}
 		  	
 	});
@@ -149,7 +179,12 @@ var lessOptions = {
 	gulp.task('templates', function() {
 
 		for(var i in paths.app.templates) {
-			processPaths(paths.app.templates[i]);
+
+			processFileBunch({
+				bunch: paths.app.templates[i],
+				reload: true
+			});
+
 	  	}
 	  
 	});
@@ -183,17 +218,17 @@ var lessOptions = {
 
 		// When application layout changes, process application layouts
 		for(var i in paths.app.layouts) {
-			gulp.watch(paths.app.layouts[i].src, ['layouts_app']);
+			gulp.watch(paths.app.layouts[i].src, ['layouts']);
 		}
 
 		// When application template changes, process application templates
 		for(var i in paths.app.templates) {
-			gulp.watch(paths.app.templates[i].src, ['templates_app']);
+			gulp.watch(paths.app.templates[i].src, ['templates']);
 		}
 
 		// When application asset changes, process application assets
 		for(var i in paths.app.assets) {
-				gulp.watch(paths.app.assets[i].src, ['assets_app']);
+			gulp.watch(paths.app.assets[i].src, ['assets_app']);
 		}
 		
 	});
@@ -205,19 +240,24 @@ var lessOptions = {
 *************************************************************/
 
 
-function processPaths (item, reload) {
+function processFileBunch (options) {
+
+
+	var bunch =  options.bunch;
+	var livereload = options.reload || false;
+
 
 	// If item.src is array
 	// Always ignore this files
-	if(Array.isArray(item.src)) {
-		item.src.push("!" + config.src_dir +"/paths-app.js");
-		item.src.push("!" + config.src_dir +"/paths-vendor.js");	
+	if(Array.isArray(bunch.src)) {
+		bunch.src.push("!" + config.src_dir +"/paths-app.js");
+		bunch.src.push("!" + config.src_dir +"/paths-vendor.js");	
 	}
 
 	var streams = [];
 
-	if(typeof item.tasks !== "undefined") {
-		item.tasks.map(function(task) {
+	if(typeof bunch.tasks !== "undefined") {
+		bunch.tasks.map(function(task) {
 			if(typeof fileTasks[task.name] !== "undefined") {
 				streams.push(fileTasks[task.name](task.options || {}))
 			}
@@ -227,11 +267,21 @@ function processPaths (item, reload) {
 		});
 	}
 
+	// Assuming is always dest...
+	streams.push(gulp.dest(bunch.dest));
+
+	// If we should livereload
+	if(livereload) {
+		streams.push(connect.reload());
+	}
+
+
+	// Generate stream
 	var generatedStream = Combine(streams);
 	
-	gulp.src(item.src)
-		.pipe(generatedStream)
-		.pipe(gulp.dest(item.dest));
+	gulp.src(bunch.src)
+		.pipe(generatedStream);
+		// .pipe(gulp.dest(item.dest));
 		// .pipe(connect.reload());
 
 }
