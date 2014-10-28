@@ -25,6 +25,10 @@ sbAdmin.main
 		templateUrl: 'templates/bootstrap-grid/bootstrap-grid.html',
 		controller: 'BootstrapGridCtrl'
 	})
+	.when('/blank-page', {
+		templateUrl: 'templates/blank-page/blank-page.html',
+		controller: 'BlankPageCtrl'
+	})
 
 	.otherwise({
 		redirectTo: '/dashboard'

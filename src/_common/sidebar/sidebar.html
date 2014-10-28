@@ -45,13 +45,13 @@
 		</li>
 
 		<li>
-			<a href="">
+			<a href="" ng-click="header.setCollapsed(!header.navbarCollapsed)" ng-class="{collapsed : !header.navbarCollapsed}">
 				<i class="fa fa-fw fa-arrows-v"></i> 
 				Dropdown 
 				<i class="fa fa-fw fa-caret-down"></i>
 			</a>
 			
-			<ul id="demo" class="collapse" >
+			<ul id="demo" class="collapse" ng-class="{in : header.navbarCollapsed}" >
 				<li>
 					<a href="#">Dropdown Item</a>
 				</li>
@@ -59,6 +59,10 @@
 					<a href="#">Dropdown Item</a>
 				</li>
 			</ul>
+		</li>
+
+		<li >
+		    <a ng-href="#/blank-page"><i class="fa fa-fw fa-file"></i> Blank Page</a>
 		</li>
 
 	</ul>

@@ -1,7 +1,15 @@
 sbAdmin.common
 
-.controller("HeaderCtrl", function($scope, $log, $routeParams) {
+.controller("HeaderCtrl", HeaderCtrl);
 
-	$scope.navbarCollapsed = true;
+function HeaderCtrl () {
 
-});
+	var header = this;
+
+	header.navbarCollapsed = false;
+
+	header.setCollapsed = function(data){
+		header.navbarCollapsed = data;
+	}
+
+}
