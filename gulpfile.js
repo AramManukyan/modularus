@@ -9,48 +9,82 @@
 	paths.vendor = require("./src/paths-vendor");
 
 
+	
+/************************************************************
+*					Libraries
+************************************************************/
+	
+	var _ = require('lodash'),
+		Combine = require('stream-combiner')
+
 /************************************************************
 *					Gulp Modules
 ************************************************************/
+	
+	// Common modules
+	var gulp = require('gulp'),
+		gulpif = require('gulp-if'),
+		lazypipe = require('lazypipe'),
+		gulpIgnore = require('gulp-ignore'),
+		gutil = require('gulp-util'),
+		connect = require('gulp-connect'),
+		concat = require('gulp-concat'),
+		rename = require("gulp-rename"),
+		flatten = require('gulp-flatten'),
+		uglify = require('gulp-uglify'),
+		fileinclude = require('gulp-file-include'),
+		filter = require('gulp-filter'),
+		mainBowerFiles = require('main-bower-files'),
+		less = require("gulp-less"),
+		jshint = require('gulp-jshint');
 
-var Combine = require('stream-combiner');
+/************************************************************
+*					Default configs
+************************************************************/
 
-// Common modules
-var gulp = require('gulp'),
-	gulpif = require('gulp-if'),
-	lazypipe = require('lazypipe'),
-	gulpIgnore = require('gulp-ignore'),
-	gutil = require('gulp-util'),
-	connect = require('gulp-connect'),
-	concat = require('gulp-concat'),
-	rename = require("gulp-rename"),
-	flatten = require('gulp-flatten'),
-	uglify = require('gulp-uglify'),
-	fileinclude = require('gulp-file-include'),
-	filter = require('gulp-filter'),
-	mainBowerFiles = require('main-bower-files'),
-	less = require("gulp-less"),
-	jshint = require('gulp-jshint');
+	var lessOptions = {
+		paths: [ 
+			config.src_dir,
+			config.bower_dir,
+		]
+	};
 
-// Defining tasks in object to be able to refer them by their name later
-var fileTasks = {
-	concat: concat,
-	rename: rename,
-	flatten: flatten,
-	uglify: uglify,
-	fileinclude: fileinclude,
-	filter: filter,
-	mainBowerFiles: mainBowerFiles,
-	less: less,
-	jshint: jshint
-};
+/************************************************************
+*					Filebunch tasks
+************************************************************/
 
-var lessOptions = {
-	paths: [ 
-		config.src_dir,
-		config.bower_dir,
-	]
-};
+
+	// Defining tasks in object to be able to refer them by their name later
+	var fileTasks = {
+		concat: {
+			runner: concat
+		},
+		rename: {
+			runner: rename
+		},
+		flatten: {
+			runner: flatten
+		},
+		uglify: {
+			runner: uglify
+		},
+		fileinclude: {
+			runner: fileinclude
+		},
+		filter: {
+			runner: filter
+		},
+		mainBowerFiles: {
+			runner: mainBowerFiles
+		},
+		less: {
+			runner: less,
+			defaults: lessOptions
+		},
+		jshint: {
+			runner: jshint
+		}
+	};
 
 
 
@@ -259,7 +293,22 @@ function processFileBunch (options) {
 	if(typeof bunch.tasks !== "undefined") {
 		bunch.tasks.map(function(task) {
 			if(typeof fileTasks[task.name] !== "undefined") {
-				streams.push(fileTasks[task.name](task.options || {}))
+
+				var taskRunner = fileTasks[task.name].runner;
+
+				var taskDefaults = fileTasks[task.name].defaults || null;
+				var taskOptions = task.options || null;
+
+				var options;
+
+				if(_.isObject(taskOptions) && _.isObject(taskDefaults)) {
+					options = _.assign(taskDefaults, taskOptions);
+				}
+				else {
+					options = taskOptions || taskDefaults;
+				}
+
+				streams.push(taskRunner(options));
 			}
 			else {
 				console.log("Task \"" + task.name + "\" is not defined...");

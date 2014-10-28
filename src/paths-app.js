@@ -30,13 +30,7 @@ exports.styles = [
 		src: config.src_dir + "/_main/main.less",
 		tasks: [
 			{
-				name: "less",
-				options: {
-					paths: [ 
-						config.src_dir,
-						config.bower_dir,
-					]
-				}
+				name: "less"
 			}
 		],
 		dest: config.build_dir + "/css/"
