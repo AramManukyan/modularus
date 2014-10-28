@@ -5,8 +5,8 @@
 	var config = require("./tasks/config");
 	var paths = {};
 
-	paths.app = require("./src/paths-app");
-	paths.vendor = require("./src/paths-vendor");
+	paths.app = require("./src/.src-config/paths-app");
+	paths.vendor = require("./src/.src-config/paths-vendor");
 
 
 	

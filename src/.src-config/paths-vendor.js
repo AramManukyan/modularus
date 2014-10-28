@@ -1,4 +1,4 @@
-var config = require("../tasks/config.js");
+var config = require("../../tasks/config.js");
 
 // Vendor scripts processing
 // Each object represents a bunch of files needs to be processed in certain way

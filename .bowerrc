@@ -1,5 +1,5 @@
 {
-  "cwd": "src",
-  "directory": "../bower_components"
+  "cwd": "src/.src-config",
+  "directory": "../../bower_components"
 }
 

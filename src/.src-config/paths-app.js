@@ -1,4 +1,4 @@
-var config = require("../tasks/config.js");
+var config = require("../../tasks/config.js");
 
 // Application script files
 exports.scripts = [
