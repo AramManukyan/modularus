@@ -12,10 +12,10 @@ Modularus is a set of tools and predefined file structure which allows you to cr
 
 Modularus supports some common configurations out of the box. 
 
-* Frameworks: `AngularJS`, `BackboneJS`, `EmberJS`
-* Scripts: `JavaScript`, `CoffeeScript`
-* Markup:  `HTML`, `EJS`, `Jade`
-* Stylesheets: `CSS`, `LESS`, `SASS`
+* Frameworks: `AngularJS` @ToDo: `BackboneJS`, `EmberJS`
+* Scripts: `JavaScript` @ToDo: `CoffeeScript`
+* Markup:  `HTML` @ToDo: `EJS`, `Jade`
+* Stylesheets: `CSS`, `LESS` @ToDo: `SASS`
 
 But it doesn't limit or force to use any of those. If you want to use configurations which are different from listed ones, you should just little bit tweak the modularus for your own needs.
 
