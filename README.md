@@ -110,35 +110,6 @@ So open your favorite browser and navigate to [http://localhost:3333/](http://lo
 
 ## Configuration
 
-By default the [build system]() is configured to use pure **JavaScript**, pure **HTML** and **LESS**. But you can easily reconfigure gulp to use different script, template and style preprocessors in `tasks/config.js`.
-
-Also you should **manually** specify the paths to you third-party vendor libraries installed by bower in `tasks/paths-vendor.js`.
-
-The following prerpocessors are available.
-
-*Scripts*
-
-- Pure javascript (.js)
-- CoffeeScript (.coffee)
-- LiveScript (.ls)
-- TypeScript (.ts)
-
-*Templates*
-
-- Pure HTML (.html)
-- Jade (.jade)
-- EJS (.ejs)
-- Mustache (.mtch)
-- Handlebars (.hbs)
-
-*Styles*
-
-- Pure CSS
-- LESS
-- SASS
-- Stylus
-
-
 
 ## Modules - file organization by thear feature
 
