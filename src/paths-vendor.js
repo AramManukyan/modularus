@@ -18,9 +18,6 @@ exports.scripts = [
 			{
 				name: "concat",
 				options: "vendor.js"
-			},
-			{
-				name: "uglify",
 			}
 		],
 		dest: config.build_dir + "/js"

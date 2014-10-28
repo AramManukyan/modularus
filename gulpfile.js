@@ -13,6 +13,8 @@
 *					Gulp Modules
 ************************************************************/
 
+var Combine = require('stream-combiner');
+
 // Common modules
 var gulp = require('gulp'),
 	gulpif = require('gulp-if'),
@@ -212,32 +214,23 @@ function processPaths (item, reload) {
 		item.src.push("!" + config.src_dir +"/paths-vendor.js");	
 	}
 
-	
-
-	// Creating empty pipe at the beginning to not 
-	// Cause lazypipe error
-	var generatedPipe = lazypipe()
-		.pipe(function () {
-			return false;
-		});
+	var streams = [];
 
 	if(typeof item.tasks !== "undefined") {
-		for(var i in item.tasks) {
-			var task = item.tasks[i];
-
+		item.tasks.map(function(task) {
 			if(typeof fileTasks[task.name] !== "undefined") {
-				console.log(task.name);
-				generatedPipe = lazypipe(generatedPipe).pipe(fileTasks[task.name], task.options || {});
+				streams.push(fileTasks[task.name](task.options || {}))
 			}
 			else {
 				console.log("Task \"" + task.name + "\" is not defined...");
-			}
-		}
+			}			
+		});
 	}
 
-
+	var generatedStream = Combine(streams);
+	
 	gulp.src(item.src)
-		.pipe(generatedPipe())
+		.pipe(generatedStream)
 		.pipe(gulp.dest(item.dest));
 		// .pipe(connect.reload());
 
@@ -255,8 +248,8 @@ function processPaths (item, reload) {
 		'scripts', 
 		'styles', 
 		'layouts',
-		// 'templates',
-		// 'assets'
+		'templates',
+		'assets'
 	]);
 
 	// // Run this task for development
