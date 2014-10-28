@@ -21,6 +21,10 @@ sbAdmin.main
 		templateUrl: 'templates/bootstrap-elements/bootstrap-elements.html',
 		controller: 'BootstrapElementsCtrl'
 	})
+	.when('/bootstrap-grid', {
+		templateUrl: 'templates/bootstrap-grid/bootstrap-grid.html',
+		controller: 'BootstrapGridCtrl'
+	})
 
 	.otherwise({
 		redirectTo: '/dashboard'
