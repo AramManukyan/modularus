@@ -1,4 +1,4 @@
-exampleApp.header
+sbAdmin.common
 
 .controller("HeaderCtrl", function($scope, $log, $routeParams) {
 

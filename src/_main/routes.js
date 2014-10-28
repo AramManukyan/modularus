@@ -1,16 +1,16 @@
-exampleApp.main
+sbAdmin.main
 
 .config(function($routeProvider) {
 	
 	$routeProvider
 
-	.when('/reports/:reportId?', {
-		templateUrl: 'templates/reports/reports.html',
-		controller: 'ReportsCtrl'
+	.when('/dashboard', {
+		templateUrl: 'templates/dashboard/dashboard.html',
+		controller: 'DashboardCtrl'
 	})
 
 	.otherwise({
-		redirectTo: '/reports'
+		redirectTo: '/dashboard'
 	});
 	
 });

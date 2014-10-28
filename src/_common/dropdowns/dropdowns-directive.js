@@ -1,4 +1,4 @@
-exampleApp.main
+sbAdmin.common
 
 .directive('dropdownsInit', function($log, $document) {
 

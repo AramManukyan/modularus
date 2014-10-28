@@ -1,21 +1,26 @@
-var exampleApp = {};
+var sbAdmin = {};
 
-exampleApp.main = angular.module("exampleApp", [
+sbAdmin.main = angular.module("exampleApp", [
 
 	// Library modules
 	"ngRoute",
 	
 	// Application modules
-	"exampleApp.header",
-	"exampleApp.reports",
-	"exampleApp.widgets",
+	"sbAdmin.common",
+	"sbAdmin.dashboard"
+	// "exampleApp.reports",
+	// "exampleApp.widgets",
 ]);
 
-// Header module
-exampleApp.header = angular.module("exampleApp.header", []);
+// Common components module
+sbAdmin.common = angular.module("sbAdmin.common", []);
+
+// Dashboard module
+sbAdmin.dashboard = angular.module("sbAdmin.dashboard", []);
+
 
 // Reports module
-exampleApp.reports = angular.module("exampleApp.reports", []);
+// sbAdmin.reports = angular.module("exampleApp.reports", []);
 
 // Widgets module
-exampleApp.widgets = angular.module("exampleApp.widgets", []);
+// sbAdmin.widgets = angular.module("exampleApp.widgets", []);
