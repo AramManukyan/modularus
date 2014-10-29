@@ -2,6 +2,8 @@ sbAdmin.common
 
 .directive('dropdownsInit', function($log, $document) {
 
+  var $dropdowns = null,
+      $dropdownLists = null;
 
   function link(scope, $element) {
 
@@ -10,17 +12,18 @@ sbAdmin.common
       var $dropdownToggle = $(e.target).closest(".dropdown-toggle");
 
       if($dropdownToggle.length) {
-        var $dropdowns = $element.find(".dropdown");
-        var $dropdownLists = $dropdowns.find("> ul");
+        $dropdowns = $element.find(".dropdown");
+        $dropdownLists = $dropdowns.find("> ul");
+
         $dropdowns.not($dropdownToggle.parent()).filter(".open").removeClass("open");
         $dropdownToggle.parent().toggleClass("open");
       }
 
     });
 
-    $(document).on("click", function(event) {
+    $(document).on("click", function(e) {
 
-      if(!$(event.target).hasClass("dropdown-toggle")) { //&& $dropdowns
+      if(!$(e.target).closest(".dropdown-toggle").length) { //&& $dropdowns
         $(".dropdown").filter(".open").removeClass("open");
       }
 
