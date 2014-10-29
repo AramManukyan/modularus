@@ -1,7 +1,19 @@
 sbAdmin.main
 
-.controller("MainCtrl", function($scope, $log, $route, $routeParams, $location) {
+.controller("MainCtrl", MainCtrl);
 
-})
+function MainCtrl($rootScope) {
 
-;
+	$rootScope.uiState = {
+		
+	};
+
+
+	var vm = this;
+
+	vm.uiState = {
+
+	};
+
+
+}

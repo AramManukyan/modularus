@@ -4,24 +4,11 @@
 
 	<div class="container-fluid">
 
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">
-					Dashboard <small>Statistics Overview</small>
-				</h1>
+		<!-- Page Title -->
+		<ng-include src="'templates/_common/page-title/page-title.html'"></ng-include>
 
-
-				<!-- Breadcrumbs -->
-				<!-- <ng-include src="'templates/_common/breadcrumbs/breadcrumbs.html'"></ng-include> -->
-				<ol class="breadcrumb">
-					<li class="active">
-						<i class="fa fa-dashboard"></i> Dashboard
-					</li>
-				</ol>
-
-			</div>
-		</div>
-
+		<!-- Breadcrumbs -->
+		<ng-include src="'templates/_common/breadcrumbs/breadcrumbs.html'"></ng-include>
 
 		<!-- Notifications -->
 		<ng-include src="'templates/dashboard/notifications/notifications.html'"></ng-include>
@@ -31,7 +18,6 @@
 
 		<!-- Area chart component -->
 		<ng-include src="'templates/dashboard/area-chart/area-chart.html'"></ng-include>
-
 
 
 		<div class="row">
