@@ -9,7 +9,9 @@
     "angular-route": "~1.2.25",
     "font-awesome": "~4.2.0",
     "d3": "~3.4.12",
-    "nvd3": "~1.1.15-beta"
+    "nvd3": "~1.1.15-beta",
+    "raphael": "~2.1.2",
+    "morrisjs": "~0.5.1"
   },
   "resolutions": {
     "d3": "~3.4.12"

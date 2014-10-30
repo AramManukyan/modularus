@@ -9,8 +9,8 @@ exports.scripts = [
 	{
 		src: [
 			config.bower_dir + "/jquery/dist/jquery.js",
-			config.bower_dir + "/d3/d3.js",
-			config.bower_dir + "/nvd3/nv.d3.js",
+			config.bower_dir + "/raphael/raphael-min.js",
+			config.bower_dir + "/morrisjs/morris.min.js",
 			config.bower_dir + "/angular/angular.js",
 			config.bower_dir + "/angular-route/angular-route.js"
 		],
@@ -35,8 +35,8 @@ exports.styles = [
 		src: [
 			config.bower_dir + "/bootstrap/dist/css/bootstrap.css",
 			config.bower_dir + "/bootstrap/dist/css/bootstrap-theme.css",
+			config.bower_dir + "/morrisjs/morris.css",
 			config.bower_dir + "/font-awesome/css/font-awesome.css",
-			config.bower_dir + "/nvd3/nv.d3.css"
 		],
 		tasks: [
 			{
