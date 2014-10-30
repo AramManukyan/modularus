@@ -1,22 +1,19 @@
 sbAdmin.common
 
-.directive('chartDonut', function($log, $document) {
+.directive('chartDonut', function($log, chartService) {
 
-  function link(scope, $element) {
+  function link(scope) {
 
-    Morris.Donut({
-        element: 'morris-donut-chart',
-        data: [{
-            label: "Download Sales",
-            value: 12
-        }, {
-            label: "In-Store Sales",
-            value: 30
-        }, {
-            label: "Mail-Order Sales",
-            value: 20
-        }],
-        resize: true
+    chartService.get('donut',function(data){
+
+      Morris.Donut({
+
+          element: 'morris-donut-chart',
+          data: data.data,
+          resize: true
+          
+      });
+
     });
 
 

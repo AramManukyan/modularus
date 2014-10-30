@@ -16,6 +16,12 @@ sbAdmin.main
 		title: 'Table',
 		faIcon: 'fa-table'
 	})
+	.when('/charts', {
+		templateUrl: 'templates/charts/charts.html',
+		controller: 'ChartsCtrl',
+		title: 'Charts',
+		faIcon: 'fa-bar-chart-o'
+	})
 
 	.when('/forms', {
 		templateUrl: 'templates/forms/forms.html',
