@@ -1,20 +1,20 @@
 sbAdmin.common
 
-.directive('chartDonut', function($log, chartService) {
+.directive('chartDonut', function($log) {
 
   function link(scope) {
 
-    chartService.get('donut',function(data){
+    // chartService.get('donut',function(data){
 
-      Morris.Donut({
+    //   Morris.Donut({
 
-          element: 'morris-donut-chart',
-          data: data.data,
-          resize: true
+    //       element: 'morris-donut-chart',
+    //       data: data.data,
+    //       resize: true
           
-      });
+    //   });
 
-    });
+    // });
 
 
   }

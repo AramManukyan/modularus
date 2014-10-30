@@ -1,31 +1,45 @@
 sbAdmin.common
 
-.directive('chartArea', function($log, chartService) {
+.directive('chartArea', function($log) {
 
   function link(scope) {
 
-    chartService.get('area',function(data){
 
-        Morris.Area({
-            element: 'morris-area-chart',
-            data: data.data,
-            xkey: data.xkey,
-            ykeys: data.ykeys,
-            labels: data.labels,
-            pointSize: 2,
-            hideHover: 'auto',
-            resize: true
-        });
+    $log.log(scope);
 
-    })
-    
+    scope.$watch("data", function() {
+
+      if(!angular.isObject(scope.data)) {
+        return false;
+      }
+
+
+      initChart();
+      
+    });
+
+    function initChart() {
+      Morris.Area({
+          element: 'morris-area-chart',
+          data: scope.data.data,
+          xkey: scope.data.xkey,
+          ykeys: scope.data.ykeys,
+          labels: scope.data.labels,
+          pointSize: 2,
+          hideHover: 'auto',
+          resize: true
+      });
+    }
 
   }
 
   // Return directive configuration.
   return({
     link: link,
-    restrict: "A"
+    restrict: "AE",
+    scope: {
+      data: "=chartData"
+    }
   });
 
 })
