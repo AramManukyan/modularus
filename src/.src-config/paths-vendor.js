@@ -11,6 +11,9 @@ exports.scripts = [
 			config.bower_dir + "/jquery/dist/jquery.js",
 			config.bower_dir + "/raphael/raphael-min.js",
 			config.bower_dir + "/morrisjs/morris.min.js",
+			config.bower_dir + "/flot/jquery.flot.js",
+			config.bower_dir + "/flot/jquery.flot.resize.js",
+			config.bower_dir + "/flot/jquery.flot.pie.js",
 			config.bower_dir + "/angular/angular.js",
 			config.bower_dir + "/angular-route/angular-route.js"
 		],
