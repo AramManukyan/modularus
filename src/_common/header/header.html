@@ -1,6 +1,6 @@
 <!-- Brand and toggle get grouped for better mobile display -->
 <div class="navbar-header">
-	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+	<button type="button" class="navbar-toggle" ng-click="header.collapseHeader(!header.headerCollapsed)">
 		<span class="sr-only">Toggle navigation</span>
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
@@ -13,47 +13,17 @@
 	<li class="dropdown">
 		<a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
 		<ul class="dropdown-menu message-dropdown">
-			<li class="message-preview">
+			<li class="message-preview" ng-repeat="note in header.notes.data">
 				<a href="">
 					<div class="media">
 						<span class="pull-left">
-							<img class="media-object" src="http://placehold.it/50x50" alt="">
+							<img class="media-object" ng-src="{{note.avatar}}" alt="">
 						</span>
 						<div class="media-body">
-							<h5 class="media-heading"><strong>John Smith</strong>
+							<h5 class="media-heading"><strong>{{note.fullname}}</strong>
 							</h5>
-							<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-							<p>Lorem ipsum dolor sit amet, consectetur...</p>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="message-preview">
-				<a href="">
-					<div class="media">
-						<span class="pull-left">
-							<img class="media-object" src="http://placehold.it/50x50" alt="">
-						</span>
-						<div class="media-body">
-							<h5 class="media-heading"><strong>John Smith</strong>
-							</h5>
-							<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-							<p>Lorem ipsum dolor sit amet, consectetur...</p>
-						</div>
-					</div>
-				</a>
-			</li>
-			<li class="message-preview">
-				<a href="">
-					<div class="media">
-						<span class="pull-left">
-							<img class="media-object" src="http://placehold.it/50x50" alt="">
-						</span>
-						<div class="media-body">
-							<h5 class="media-heading"><strong>John Smith</strong>
-							</h5>
-							<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-							<p>Lorem ipsum dolor sit amet, consectetur...</p>
+							<p class="small text-muted"><i class="fa fa-clock-o"></i> {{note.date}}</p>
+							<p>{{note.message}}</p>
 						</div>
 					</div>
 				</a>

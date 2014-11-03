@@ -1,0 +1,28 @@
+{
+	"data":[
+		{
+			"avatar":"http://placehold.it/50x50",
+			"fullname":"John Smith",
+			"date":"Yesterday at 4:32 PM",
+			"message":"Lorem ipsum dolor sit amet, consectetur..."
+		},
+		{
+			"avatar":"http://placehold.it/50x50",
+			"fullname":"John Smith",
+			"date":"Yesterday at 4:32 PM",
+			"message":"Lorem ipsum dolor sit amet, consectetur..."
+		},
+		{
+			"avatar":"http://placehold.it/50x50",
+			"fullname":"John Smith",
+			"date":"Yesterday at 4:32 PM",
+			"message":"Lorem ipsum dolor sit amet, consectetur..."
+		},
+		{
+			"avatar":"http://placehold.it/50x50",
+			"fullname":"John Smith",
+			"date":"Yesterday at 4:32 PM",
+			"message":"Lorem ipsum dolor sit amet, consectetur..."
+		}
+	]
+}
