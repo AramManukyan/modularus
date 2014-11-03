@@ -1,0 +1,15 @@
+{
+	"data":[{
+			"label": "Series 0",
+			"data": 1
+		}, {
+			"label": "Series 1",
+			"data": 3
+		}, {
+			"label": "Series 2",
+			"data": 9
+		}, {
+			"label": "Series 3",
+			"data": 20
+		}]
+}

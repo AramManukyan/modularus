@@ -4,25 +4,36 @@ sbAdmin.common
 
   function link(scope) {
 
-    // chartService.get('donut',function(data){
+    scope.$watch("data", function() {
 
-    //   Morris.Donut({
+      if(!angular.isObject(scope.data)) {
+        return false;
+      }
 
-    //       element: 'morris-donut-chart',
-    //       data: data.data,
-    //       resize: true
+
+      initChart();
+      
+    });
+
+    function initChart() {
+      Morris.Donut({
+
+          element: 'morris-donut-chart',
+          data: scope.data.data,
+          resize: true
           
-    //   });
-
-    // });
-
+      });
+    }
 
   }
 
   // Return directive configuration.
   return({
     link: link,
-    restrict: "A"
+    restrict: "AE",
+    scope: {
+      data: "=chartData"
+    }
   });
 
 })

@@ -4,27 +4,38 @@ sbAdmin.common
 
   function link(scope) {
 
-    // chartService.get('line',function(data){
+    scope.$watch("data", function() {
 
-    //   Morris.Line({
-    //       element: 'morris-line-chart',
-    //       data: data.data,
-    //       xkey: 'd',
-    //       ykeys: ['visits'],
-    //       labels: ['Visits'],
-    //       smooth: false,
-    //       resize: true
-    //   });
+      if(!angular.isObject(scope.data)) {
+        return false;
+      }
 
-    // })
-    
+
+      initChart();
+      
+    });
+
+    function initChart() {
+      Morris.Line({
+          element: 'morris-line-chart',
+          data: scope.data.data,
+          xkey: 'd',
+          ykeys: ['visits'],
+          labels: ['Visits'],
+          smooth: false,
+          resize: true
+      });
+    }
 
   }
 
   // Return directive configuration.
   return({
     link: link,
-    restrict: "A"
+    restrict: "AE",
+    scope:{
+      data: "=chartData"
+    }
   });
 
 })

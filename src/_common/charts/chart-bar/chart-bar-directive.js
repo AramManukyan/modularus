@@ -4,29 +4,40 @@ sbAdmin.common
 
   function link(scope) {
 
-    // chartService.get('bar',function(data){
+    scope.$watch("data", function() {
 
-        // Morris.Bar({
-        //   element: 'morris-bar-chart',
-        //   data: data.data,
-        //   xkey: 'device',
-        //   ykeys: ['geekbench'],
-        //   labels: ['Geekbench'],
-        //   barRatio: 0.4,
-        //   xLabelAngle: 35,
-        //   hideHover: 'auto',
-        //   resize: true
-        // });
+      if(!angular.isObject(scope.data)) {
+        return false;
+      }
 
-    // })
-    
+
+      initChart();
+      
+    });
+
+    function initChart() {
+      Morris.Bar({
+        element: 'morris-bar-chart',
+        data: scope.data.data,
+        xkey: 'device',
+        ykeys: ['geekbench'],
+        labels: ['Geekbench'],
+        barRatio: 0.4,
+        xLabelAngle: 35,
+        hideHover: 'auto',
+        resize: true
+      });
+    }
 
   }
 
   // Return directive configuration.
   return({
     link: link,
-    restrict: "A"
+    restrict: "AE",
+    scope: {
+      data: "=chartData"
+    }
   });
 
 })

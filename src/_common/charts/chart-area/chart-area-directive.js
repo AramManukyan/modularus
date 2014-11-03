@@ -4,9 +4,6 @@ sbAdmin.common
 
   function link(scope) {
 
-
-    $log.log(scope);
-
     scope.$watch("data", function() {
 
       if(!angular.isObject(scope.data)) {
